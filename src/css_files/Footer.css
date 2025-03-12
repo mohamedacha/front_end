@@ -3,6 +3,7 @@ footer{
     bottom: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     height: 40px;
     width: 100%;
@@ -15,6 +16,7 @@ footer{
         display: flex;
         height: 100%;
         p{
+            cursor: pointer;
             margin: auto 10px;
         }
     }
@@ -22,7 +24,22 @@ footer{
         display: flex;
         height: 100%;
         div{
-            margin: auto 10px ;
+            margin-left: 10px;
+            top: calc(50% - 11px);
+            position: relative;
+            right: 10px;
+            height: fit-content;
+            cursor: pointer;
+
+        }
+        .telegram-icon{
+            top: calc(50% - 12px);
+        }
+        .instagram-icon{
+            top: calc(50% - 14px);
+        }
+        .facebook-icon{
+            top: calc(50% - 14px);
         }
     }
 

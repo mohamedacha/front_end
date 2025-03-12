@@ -1,4 +1,5 @@
-import '../css_files/Header.css' ;
+import '../css_files/Header.css';
+import {ReactComponent as AccountIcon} from '../svg/account.svg'
 
 export default function Header() {
     return (
@@ -13,7 +14,7 @@ export default function Header() {
                 <a href="my orders">my orders</a>
             </nav>
             <div className="account">
-                account
+                <AccountIcon width='25' height="25" fill='white'/>
             </div>
         </header>
     )

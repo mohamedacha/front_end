@@ -5,10 +5,12 @@ header{
     background-color: #002A71;
     color: white;
     height: 50px;
+    position: relative;
 
     nav {
         position: absolute;
         left:  25%;
+        width: fit-content ;
 
         a {
             text-decoration: none;
@@ -19,6 +21,7 @@ header{
     .account{
         position: absolute;
         right:  10px;
+        top: calc(50% - 12.5px);
         cursor: pointer;
 
     }
