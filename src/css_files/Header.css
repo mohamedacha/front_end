@@ -1,0 +1,33 @@
+header{
+    display: flex;
+    align-items: center;
+
+    background-color: #002A71;
+    color: white;
+    height: 50px;
+
+    nav {
+        position: absolute;
+        left:  25%;
+
+        a {
+            text-decoration: none;
+            color: white;
+            margin: 0 30px ;
+        }
+    }
+    .account{
+        position: absolute;
+        right:  10px;
+        cursor: pointer;
+
+    }
+    .logo{
+        font-size: 25px;
+        position: absolute;
+        left:  10px;
+        cursor: pointer;
+    }
+
+
+}

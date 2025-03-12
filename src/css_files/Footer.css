@@ -1,0 +1,29 @@
+footer{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+
+    height: 40px;
+    width: 100%;
+    background-color: #CBDCEB;
+    color: #133E87 ;
+    font-size: large;
+    font-weight: 500;
+
+    .left-part{
+        display: flex;
+        height: 100%;
+        p{
+            margin: auto 10px;
+        }
+    }
+    .right-part{
+        display: flex;
+        height: 100%;
+        div{
+            margin: auto 10px ;
+        }
+    }
+
+}
