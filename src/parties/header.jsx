@@ -9,9 +9,9 @@ export default function Header() {
             </div>
             <nav>
                 <a href="home">home</a>
-                <a href="service">service</a>
-                <a href="product">product</a>
-                <a href="my orders">my orders</a>
+                <a href="service">services</a>
+                <a href="product">products</a>
+                <a href="my orders">orders</a>
             </nav>
             <div className="account">
                 <AccountIcon width='25' height="25" fill='white'/>
