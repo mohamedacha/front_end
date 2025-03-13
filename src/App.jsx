@@ -7,6 +7,7 @@ import Orders from './pages/orders_pages/orders';
 
 import Layoute from './parties/layoute';
 import Profaile from './pages/users_pages/profaile';
+import UpdateUser from './pages/users_pages/update_user';
 
 export default function App() {
   return (
@@ -20,7 +21,7 @@ export default function App() {
         <Route path='/users' element={<Layoute/>}>
           <Route path='index' element={<Products/>} />
           <Route path='create' element={<Products/>} />
-          <Route path='update' element={<Services/>} />
+          <Route path='update' element={<UpdateUser/>} />
           <Route path='show' element={<Profaile/>} />
         </Route>
 

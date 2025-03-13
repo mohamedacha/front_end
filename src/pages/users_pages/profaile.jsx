@@ -32,7 +32,7 @@ export default function Profaile(){
                 <span className="username">{user.name}</span>
                 <span className="useremail">{user.email}</span>
                 <span className="userphone_number">{user.phone_number}</span>
-                <Link to ='/' className="update"> update</Link>
+                <Link to ='/users/update' className="update"> update</Link>
                 <Link to ='/' className="logout" onClick={logOut()}> log out</Link>
             </div>
         </div>
