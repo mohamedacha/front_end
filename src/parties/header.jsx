@@ -13,7 +13,7 @@ export default function Header() {
                 <Link to="/products">products</Link>
                 <Link to="/orders">orders</Link>
             </nav>
-            <Link to="account" className="account">
+            <Link to="/users/show" className="account">
                 <AccountIcon width='25' height="25" fill='white'/>
             </Link>
         </header>

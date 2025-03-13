@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "./productCard";
-import '../css_files/products.css' ;
+import '../../css_files/products.css' ;
 
 
 export default function Products() {
@@ -10,8 +10,8 @@ export default function Products() {
     useEffect(() => {
         const get_products = async () => {
             try {
-                let response = await fetch('http://127.0.0.1:8000/api/products');
-                let data = await response.json();
+                const response = await fetch('http://127.0.0.1:8000/api/products');
+                const data = await response.json();
                 console.log(data)
                 setProducts(data.data);
             }

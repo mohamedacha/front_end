@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Products from './pages/products';
-import Home from './pages/home';
-import NotFound from './pages/notFound';
-import Services from './pages/services';
-import Orders from './pages/orders';
+import Products from './pages/products_pages/products';
+import Home from './parties/home';
+import NotFound from './parties/notFound';
+import Services from './pages/services_pages/services';
+import Orders from './pages/orders_pages/orders';
 
 import Layoute from './parties/layoute';
+import Profaile from './pages/users_pages/profaile';
 
 export default function App() {
   return (
@@ -13,13 +14,14 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Layoute/>}>
           <Route index element={<Home/>}/>
+          <Route path='*' element={<NotFound/>} />
         </Route>
 
         <Route path='/users' element={<Layoute/>}>
-          <Route path='users.index' element={<Products/>} />
-          <Route path='user.create' element={<Products/>} />
-          <Route path='user.update' element={<Services/>} />
-          <Route path='user.show' element={<Orders/>} />
+          <Route path='index' element={<Products/>} />
+          <Route path='create' element={<Products/>} />
+          <Route path='update' element={<Services/>} />
+          <Route path='show' element={<Profaile/>} />
         </Route>
 
         <Route path='/products' element={<Layoute/>}>
@@ -42,8 +44,6 @@ export default function App() {
           <Route path='order.update' element={<Services/>} />
           <Route path='order.show' element={<Orders/>} />
         </Route>
-
-        <Route path='*' element={<NotFound/>} />
 
       </Routes>
       </BrowserRouter>
