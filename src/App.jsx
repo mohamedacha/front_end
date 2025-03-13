@@ -1,17 +1,14 @@
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Products from './pages/products';
 import Home from './pages/home';
 import NotFound from './pages/notFound';
 import Services from './pages/services';
 import Orders from './pages/orders';
 
-import Footer from './parties/footer';
-import Header from './parties/header';
 import Layoute from './parties/layoute';
 
 export default function App() {
   return (
-    <>
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layoute/>}>
@@ -50,7 +47,6 @@ export default function App() {
 
       </Routes>
       </BrowserRouter>
-    </>
   );
 }
 

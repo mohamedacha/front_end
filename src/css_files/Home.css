@@ -1,0 +1,65 @@
+/* HomePage.css */
+
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .search-bar {
+    display: flex;
+    margin: 20px 0;
+  }
+  
+  .search-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+  }
+  
+  .search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+  }
+  
+  .sections-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-image {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
