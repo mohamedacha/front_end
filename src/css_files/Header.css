@@ -26,6 +26,8 @@ header{
 
     }
     .logo{
+        text-decoration: none;
+        color: white ;
         font-size: 25px;
         position: absolute;
         left:  10px;

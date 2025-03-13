@@ -15,8 +15,7 @@ export default function ProductCard(props){
     return(
         <div onClick={handlClick()} className="productCard" key={key}>
             <span className="productprice">{product.price} DH</span>
-            <img src= {product.img} alt="productImg" />
-            <span className="quantity"> {product.quantity}</span>
+            <img src= {product.img} alt="" />
             <p className="productName">{product.product_name}</p>
         </div>
     )

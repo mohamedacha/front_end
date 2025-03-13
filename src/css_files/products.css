@@ -1,4 +1,5 @@
 .products{
+    min-height: 100vh;
     margin-top: 30px;
     width: fit-content;
     display: flex;

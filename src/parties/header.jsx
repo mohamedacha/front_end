@@ -1,21 +1,21 @@
+import { Link } from 'react-router-dom';
 import '../css_files/Header.css';
 import {ReactComponent as AccountIcon} from '../svg/account.svg'
 
 export default function Header() {
     return (
         <header>
-            <div className='logo'>
-                SOFRODIS
-            </div>
+            <Link to="" className='logo'>SOFRODIS</Link>
+                
             <nav>
-                <a href="home">home</a>
-                <a href="service">services</a>
-                <a href="product">products</a>
-                <a href="my orders">orders</a>
+                <Link to="/">home</Link>
+                <Link to="/services">services</Link>
+                <Link to="/products">products</Link>
+                <Link to="/orders">orders</Link>
             </nav>
-            <div className="account">
+            <Link to="account" className="account">
                 <AccountIcon width='25' height="25" fill='white'/>
-            </div>
+            </Link>
         </header>
     )
 }
