@@ -67,18 +67,20 @@ const OrdersCard = () => {
         <tbody>
           {orders.map((order) => (
             <tr key={order.id}>
-              <td>{order.product}</td>
+              <td>{order.product_name}</td>
               <td>{order.price}</td>
               <td>{order.quantity}</td>
-              <td>{order.totalPrice}</td>
-              <td>{order.orderDate}</td>
-              {/* <td className="confirmation-icons">
+              <td>{order.quantity * order.price}</td>
+              <td>{order.updated_at}</td>
+              <td className="confirmation-icons">
                 {order.confirmed ? (
-                  <FaCheck className="icon check" />
+                  // <FaCheck className="icon check" />
+                  <p>con</p>
                 ) : (
-                  <FaTimes className="icon cross" />
+                  // <FaTimes className="icon cross" />
+                  <p>not</p>
                 )}
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>

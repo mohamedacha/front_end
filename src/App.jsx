@@ -3,7 +3,7 @@ import Products from './pages/products_pages/products';
 import Home from './parties/home';
 import NotFound from './parties/notFound';
 import Services from './pages/services_pages/services';
-import Orders from './pages/orders_pages/orders';
+// import Orders from './pages/orders_pages/orders';
 
 import Layoute from './parties/layoute';
 import Profaile from './pages/users_pages/profaile';
@@ -31,21 +31,21 @@ export default function App() {
           <Route index element={<Products/>} />
           <Route path='product.create' element={<Products/>} />
           <Route path='product.update' element={<Services/>} />
-          <Route path='product.show' element={<Orders/>} />
+          {/* <Route path='product.show' element={<Orders/>} /> */}
         </Route>
 
         <Route path='/services' element={<Layoute/>}>
           <Route index element={<Services/>} />
           <Route path='servic.create' element={<Services/>} />
           <Route path='servic.update' element={<Services/>} />
-          <Route path='servic.show' element={<Orders/>} />
+          {/* <Route path='servic.show' element={<Orders/>} /> */}
         </Route>       
 
         <Route path='/orders' element={<Layoute/>}>
           <Route index element={<OrdersCard/>} />
           <Route path='order.create' element={<Services/>} />
           <Route path='order.update' element={<Services/>} />
-          <Route path='order.show' element={<Orders/>} />
+          {/* <Route path='order.show' element={<Orders/>} /> */}
         </Route>
 
       </Routes>
