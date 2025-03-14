@@ -1,27 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
 
 const OrdersCard = () => {
+      const [orders, setOrders] = useState([])
+  
+      useEffect(() => {
+          const get_Orders = async () => {
+              try {
+                  const response = await fetch('http://127.0.0.1:8000/api/orders');
+                  const data = await response.json();
+                  console.log(data)
+                  setOrders(data.data);
+              }
+              catch (error) {
+                  console.error('error fetching users : ', error)
+              }
+          };
+          get_Orders();
+      }, []);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   // Sample order data
-  const orders = [
-    {
-      id: 1,
-      product: "CPJ45",
-      price: "200 DHS",
-      quantity: 1000,
-      totalPrice: "200000 DHS",
-      orderDate: "25/2/2024",
-      confirmed: true,
-    },
-  ];
+  // const orders = [
+  //   {
+  //     id: 1,
+  //     product: "CPJ45",
+  //     price: "200 DHS",
+  //     quantity: 1000,
+  //     totalPrice: "200000 DHS",
+  //     orderDate: "25/2/2024",
+  //     confirmed: true,
+  //   },
+  // ];
 
   // Filter orders based on search input
-  const filteredOrders = orders.filter((order) =>
-    order.product.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const filteredOrders = orders.filter((order) =>
+  //   order.product.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   return (
     <div className="orders-container">
@@ -48,7 +65,7 @@ const OrdersCard = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredOrders.map((order) => (
+          {orders.map((order) => (
             <tr key={order.id}>
               <td>{order.product}</td>
               <td>{order.price}</td>
