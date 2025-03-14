@@ -19,7 +19,7 @@ main{
     display: flex;
 
     padding: 10px;
-    height: 400px;
+    height: 420px;
     max-width: 80%;
     width: 600px;
 
@@ -41,7 +41,7 @@ main{
         }
     }
     form{
-        padding: 25px 20px ;
+        padding: 0 15px ;
         color: #002A71;
         line-height: 35px;
 

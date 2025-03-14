@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
+// import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
 
 const OrdersCard = () => {
@@ -32,7 +32,7 @@ const OrdersCard = () => {
           placeholder="Search..."
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <FaSearch className="search-icon" />
+        {/* <FaSearch className="search-icon" /> */}
       </div>
 
       {/* Orders Table */}
@@ -55,13 +55,13 @@ const OrdersCard = () => {
               <td>{order.quantity}</td>
               <td>{order.totalPrice}</td>
               <td>{order.orderDate}</td>
-              <td className="confirmation-icons">
+              {/* <td className="confirmation-icons">
                 {order.confirmed ? (
                   <FaCheck className="icon check" />
                 ) : (
                   <FaTimes className="icon cross" />
                 )}
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
