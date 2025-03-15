@@ -69,4 +69,44 @@
   .cross {
     color: red;
   }
+
+
+  .update-btn,
+.delete-btn,
+.confirm-btn {
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Button Colors */
+.update-btn {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #d97706;
+}
+
+.delete-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #b91c1c;
+}
+
+.confirm-btn {
+  background-color: #16a34a;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #15803d;
+}
   

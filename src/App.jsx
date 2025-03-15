@@ -3,7 +3,7 @@ import Products from './pages/products_pages/products';
 import Home from './parties/home';
 import NotFound from './parties/notFound';
 import Services from './pages/services_pages/services';
-// import Orders from './pages/orders_pages/orders';
+import ProductDetails from './parties/showproduct';
 
 import Layoute from './parties/layoute';
 import Profaile from './pages/users_pages/profaile';
@@ -12,7 +12,8 @@ import UpdateUser from './pages/users_pages/update_user';
 import OrdersCard from './pages/orders_pages/ordersCard';
 export default function App() {
   return (
-    
+      <>
+      <ProductDetails/>
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layoute/>}>
@@ -50,6 +51,7 @@ export default function App() {
 
       </Routes>
       </BrowserRouter>
+      </>
   );
 }
 
