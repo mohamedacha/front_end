@@ -13,7 +13,6 @@ import OrdersCard from './pages/orders_pages/ordersCard';
 export default function App() {
   return (
       <>
-      <ProductDetails/>
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layoute/>}>
@@ -30,9 +29,10 @@ export default function App() {
 
         <Route path='/products' element={<Layoute/>}>
           <Route index element={<Products/>} />
-          <Route path='product.create' element={<Products/>} />
-          <Route path='product.update' element={<Services/>} />
-          {/* <Route path='product.show' element={<Orders/>} /> */}
+          <Route path='create' element={<Products/>} />
+          <Route path='update' element={<Services/>} />
+          <Route path='show' element={<ProductDetails/>
+} />
         </Route>
 
         <Route path='/services' element={<Layoute/>}>
