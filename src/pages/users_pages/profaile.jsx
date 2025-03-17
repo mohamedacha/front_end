@@ -13,7 +13,7 @@ export default function Profaile(){
     useEffect(()=>{
         const get_user = async()=>{
             try{
-                const response = await fetch('http://127.0.0.1:8000/api/users/3');
+                const response = await fetch('http://127.0.0.1:8000/api/users/1');
                 const data = await response.json();
                 setUser(data.user); 
                 console.log(data);
