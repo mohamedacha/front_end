@@ -46,7 +46,7 @@ export default function App() {
           <Route index element={<OrdersCard/>} />
           <Route path='order.create' element={<Services/>} />
           <Route path='order.update' element={<Services/>} />
-          {/* <Route path='order.show' element={<Orders/>} /> */}
+          <Route path='show' element={<ProductDetails/>} />
         </Route>
 
       </Routes>

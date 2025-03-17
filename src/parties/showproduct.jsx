@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css_files/ProductDetails.css";
-import productImage from "../svg/instagram.svg"; // Make sure to place the image in the correct path
+import productImage from "../svg/account.svg"; // Make sure to place the image in the correct path
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);

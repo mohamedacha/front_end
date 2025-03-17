@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
-
+import { Link } from "react-router-dom";
 const OrdersCard = () => {
       const [orders, setOrders] = useState([])
   
@@ -22,8 +22,8 @@ const OrdersCard = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleUpdate = (id) => {
-    alert(`Updating order with ID: ${id}`);
-    
+    // alert(Updating order with ID: ${id});
+    // API call or navigate to an update form
   };
   
   const handleDelete = async (id) => {
@@ -56,7 +56,7 @@ const OrdersCard = () => {
   
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/orders/${id}/confirm`, {
-        method: "PATCH",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -137,7 +137,8 @@ const OrdersCard = () => {
               <td>{order.quantity * order.price}</td>
               <td>{order.updated_at}</td>
               <td className="actions">
-                <button className="update-btn" onClick={() => handleUpdate(order.id)}>Update</button>
+                {/* <button className="update-btn" onClick={() => handleUpdate(order.id)}>Update</button> */}
+                <Link to ='/orders/show' className="update-btn"  onClick={() => handleUpdate(order.id)} > update</Link>
                 <button className="delete-btn" onClick={() => handleDelete(order.id)}>Delete</button>
                 <button className="confirm-btn" onClick={() => handleConfirm(order.id)}>Confirmer</button>
               </td>
