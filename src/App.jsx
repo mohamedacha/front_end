@@ -3,7 +3,7 @@ import Products from './pages/products_pages/products';
 import Home from './parties/home';
 import NotFound from './parties/notFound';
 import Services from './pages/services_pages/services';
-import ProductDetails from './parties/showproduct';
+import ProductDetails from './pages/products_pages/showproduct';
 
 import Layoute from './parties/layoute';
 import Profaile from './pages/users_pages/profaile';
@@ -32,7 +32,7 @@ export default function App() {
           <Route index element={<Products/>} />
           <Route path='create' element={<Products/>} />
           <Route path='update' element={<Services/>} />
-          <Route path='show' element={<ProductDetails/>
+          <Route path='show/:id' element={<ProductDetails/>
 } />
         </Route>
 
