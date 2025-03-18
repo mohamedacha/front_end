@@ -30,8 +30,8 @@ export default function Services() {
         <div className="services_index_page">
             {services.map((service, index) => (
                 <Link className='service' key={index} to={`show/${service.id}`}>
-                    <h2 className="service-title">{service.type}</h2>
                     <img className="product-img" src={service.img} alt="" />
+                    <h2 className="service-title">{service.type}</h2>
                 </Link>
             ))}
         </div>
