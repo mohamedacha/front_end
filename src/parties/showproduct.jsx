@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css_files/ProductDetails.css";
+import "../css_files/productDetails.css";
 import productImage from "../svg/account.svg"; // Make sure to place the image in the correct path
 
 const ProductDetails = () => {
@@ -18,7 +18,7 @@ const ProductDetails = () => {
     <div className="product-container">
       <h2 className="product-title">novacim CPJ45</h2>
       <div className="product-content">
-        <img src={productImage} alt="Novacim CPJ45" className="product-image" />
+        {/* <img src={productImage} alt="Novacim CPJ45" className="product-image" /> */}
         <div className="product-info">
           <h3 className="section-title">Description:</h3>
           <p className="product-description">

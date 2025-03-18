@@ -2,33 +2,36 @@ import { useEffect, useState } from "react";
 // import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
 import { Link } from "react-router-dom";
-const OrdersCard = () => {
-      const [orders, setOrders] = useState([])
-  
-      useEffect(() => {
-          const get_Orders = async () => {
-              try {
-                  const response = await fetch('http://127.0.0.1:8000/api/orders');
-                  const data = await response.json();
-                  console.log(data)
-                  setOrders(data.data);
-              }
-              catch (error) {
-                  console.error('error fetching users : ', error)
-              }
-          };
-          get_Orders();
-      }, []);
+
+
+export default function OrdersCard() {
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    const get_Orders = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/orders');
+        const data = await response.json();
+        console.log(data)
+        setOrders(data.data);
+      }
+      catch (error) {
+        console.error('error fetching users : ', error)
+      }
+    };
+    get_Orders();
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleUpdate = (id) => {
-    // alert(Updating order with ID: ${id});
+
+    alert(`Updating order with ID: ${id}`);
     // API call or navigate to an update form
   };
-  
+
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this order?")) return;
-  
+
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/orders/${id}`, {
         method: "DELETE",
@@ -37,7 +40,7 @@ const OrdersCard = () => {
           Accept: "application/json",
         },
       });
-  
+
       if (response.ok) {
         alert("Order deleted successfully!");
         setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id));
@@ -49,11 +52,11 @@ const OrdersCard = () => {
       console.error("Error deleting order:", error);
     }
   };
-  
-  
+
+
   const handleConfirm = async (id) => {
     if (!window.confirm("Are you sure you want to confirm this order?")) return;
-  
+
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/orders/${id}/confirm`, {
         method: "POST",
@@ -62,7 +65,7 @@ const OrdersCard = () => {
           Accept: "application/json",
         },
       });
-  
+
       if (response.ok) {
         alert("Order confirmed successfully!");
         setOrders((prevOrders) =>
@@ -78,13 +81,13 @@ const OrdersCard = () => {
       console.error("Error confirming order:", error);
     }
   };
-  
-  
- 
-  
+
+
+
+
   // Render Component
   <OrdersCard orders={orders} handleUpdate={handleUpdate} handleDelete={handleDelete} handleConfirm={handleConfirm} />;
-  
+
 
   // Sample order data
   // const orders = [
@@ -138,7 +141,9 @@ const OrdersCard = () => {
               <td>{order.updated_at}</td>
               <td className="actions">
                 {/* <button className="update-btn" onClick={() => handleUpdate(order.id)}>Update</button> */}
-                <Link to ='/orders/show' className="update-btn"  onClick={() => handleUpdate(order.id)} > update</Link>
+                {/* <Link to='/orders/show' className="update-btn" onClick={() => handleUpdate(order.id)} > update</Link> */}
+                <Link to={`/orders/update/${order.id}`} className="update-btn"> update</Link>
+                
                 <button className="delete-btn" onClick={() => handleDelete(order.id)}>Delete</button>
                 <button className="confirm-btn" onClick={() => handleConfirm(order.id)}>Confirmer</button>
               </td>
@@ -150,4 +155,4 @@ const OrdersCard = () => {
   );
 };
 
-export default OrdersCard;
+// export default OrdersCard;

@@ -10,6 +10,7 @@ import Profaile from './pages/users_pages/profaile';
 import UpdateUser from './pages/users_pages/update_user';
 
 import OrdersCard from './pages/orders_pages/ordersCard';
+import Update_order from './pages/orders_pages/Update_order';
 export default function App() {
   return (
       <>
@@ -45,7 +46,7 @@ export default function App() {
         <Route path='/orders' element={<Layoute/>}>
           <Route index element={<OrdersCard/>} />
           <Route path='order.create' element={<Services/>} />
-          <Route path='order.update' element={<Services/>} />
+          <Route path='update/:id' element={<Update_order/>} />
           <Route path='show' element={<ProductDetails/>} />
         </Route>
 
