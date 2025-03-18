@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import '../../css_files/update-profaile.css';
+import '../../css_files/update_user.css';
 export default function UpdateUser() {
 
     const [user, setUser] = useState([]);
@@ -59,28 +59,9 @@ export default function UpdateUser() {
             formData.append("address", data.address);
             formData.append("password", data.password);
             formData.append("phone_number", data.phone_number);
-            // alert(data.checkbox) ;
             formData.append("remove_img", data.checkbox );
             if (data.img instanceof File ) {formData.append("img", data.img);}
             
-            //IF USER CHOSE TO REMOVE HIS PROFAIL IMG BY CHCKBOX------------------------------
-            // if (data.checkbox == true) {
-                // try{
-                //     const response = await fetch(data.default_img);
-                //     if (!response.ok) throw new Error("Failed to fetch default image")
-
-                //     const blob = await response.blob();
-                //     const defaultFile  = new File([blob], "default.png", { type: blob.type })
-
-                //     console.log(defaultFile);
-                //     formData.append("img", defaultFile);
-
-                // }catch(error){
-                //     console.error("Error fetching default image:", error);
-                // };
-            //IF DATA.IMH IS A FILE IT CAN BE SENDED -----------------------------------------
-            // }else if (data.img instanceof File) {formData.append("img", data.img);}
-
         //SEND POST REQUEST WITH FORMDATA TO UPDATE USER ---------------------------------
             const response = await fetch('http://127.0.0.1:8000/api/users/1', {
                 method: "POST",
