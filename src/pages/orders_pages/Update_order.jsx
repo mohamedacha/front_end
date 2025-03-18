@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../../css_files/update_order.css";
+// import "../../css_files/productDetails.css";
 
 const Update_order = () => {
 

@@ -1,16 +1,21 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Products from './pages/products_pages/products';
-import Home from './parties/home';
-import NotFound from './parties/notFound';
+
 import Services from './pages/services_pages/services';
+import ServiceCard from './pages/services_pages/serviceCard';
+
+import Home from './parties/home';
+import Layoute from './parties/layoute';
+import NotFound from './parties/notFound';
+
+import Products from './pages/products_pages/products';
 import ProductDetails from './pages/products_pages/showproduct';
 
-import Layoute from './parties/layoute';
 import Profaile from './pages/users_pages/profaile';
 import UpdateUser from './pages/users_pages/update_user';
-import ServiceCard from './pages/services_pages/serviceCard';
+
 import OrdersCard from './pages/orders_pages/ordersCard';
 import Update_order from './pages/orders_pages/Update_order';
+
 export default function App() {
   return (
       <>
@@ -37,11 +42,13 @@ export default function App() {
         </Route>
 
         <Route path='/services' element={<Layoute/>}>
-          <Route index element={<ServiceCard/>} />
+          <Route index element={<Services/>} />
           <Route path='servic.create' element={<Services/>} />
           <Route path='servic.update' element={<Services/>} />
-          {/* <Route path='servic.show' element={<Orders/>} /> */}
-        </Route>       
+          <Route path='show/:id' element={<ServiceCard/>} />
+        </Route>   
+
+               
 
         <Route path='/orders' element={<Layoute/>}>
           <Route index element={<OrdersCard/>} />

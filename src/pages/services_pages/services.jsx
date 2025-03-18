@@ -3,7 +3,8 @@
 
 import { useEffect, useState } from "react";
 import ServiceCard from "./serviceCard";
-import '../../css_files/products.css' ;
+import '../../css_files/services.css';
+import { Link } from "react-router-dom";
 
 
 export default function Services() {
@@ -26,10 +27,12 @@ export default function Services() {
 
     return (
 
-        <div className="services">
-
+        <div className="services_index_page">
             {services.map((service, index) => (
-                <ServiceCard key={index} service={service} />
+                <Link className='service' key={index} to={`show/${service.id}`}>
+                    <h2 className="service-title">{service.type}</h2>
+                    <img className="product-img" src={service.img} alt="" />
+                </Link>
             ))}
         </div>
 
