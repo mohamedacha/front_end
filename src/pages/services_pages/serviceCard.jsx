@@ -1,23 +1,35 @@
+import React from "react";
+import "../../css_files/ServiceCards.css"; // Import the CSS file
 
-// import '../../css_files/ProductCard.css'
-// import { useState } from 'react'
+const services = [
+  {
+    id: 1,
+    title: "description",
+    image: "https://via.placeholder.com/150", // Replace with your actual image
+  },
+  {
+    id: 2,
+    title: "carrelage",
+    image: "", // Replace with your actual image
+  },
+  {
+    id: 3,
+    title: "electricite",
+    image: "https://via.placeholder.com/150", // Replace with your actual image
+  },
+];
 
-
-
-export default function ServiceCard(props){
-    const service = props.service
-    const key = props.key
-
-    const handlClick = ()=>{
-        // product show 
-    }
-
-    return(
-        <div onClick={handlClick()} className="serviceCard" key={key}>
-            <span className="serviceTitle">{service.type}</span>
-            <img src= {service.img} alt="" />
-            <p className="serviceDescription">{service.description}</p>
-            <hr />
+const ServiceCard = () => {
+  return (
+    <div className="services-container">
+      {services.map((service) => (
+        <div key={service.id} className="service-card">
+          <img src={service.image} alt={service.title} className="service-image" />
+          <p className="service-title">{service.title} :</p>
         </div>
-    )
-}
+      ))}
+    </div>
+  );
+};
+
+export default ServiceCard;

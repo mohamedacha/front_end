@@ -8,7 +8,7 @@ import ProductDetails from './parties/showproduct';
 import Layoute from './parties/layoute';
 import Profaile from './pages/users_pages/profaile';
 import UpdateUser from './pages/users_pages/update_user';
-
+import ServiceCard from './pages/services_pages/serviceCard';
 import OrdersCard from './pages/orders_pages/ordersCard';
 export default function App() {
   return (
@@ -36,7 +36,7 @@ export default function App() {
         </Route>
 
         <Route path='/services' element={<Layoute/>}>
-          <Route index element={<Services/>} />
+          <Route index element={<ServiceCard/>} />
           <Route path='servic.create' element={<Services/>} />
           <Route path='servic.update' element={<Services/>} />
           {/* <Route path='servic.show' element={<Orders/>} /> */}
