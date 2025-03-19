@@ -34,7 +34,8 @@ main{
     padding: 10px;
     min-height: 420px;
     max-width: 80%;
-    width: 600px;
+    min-width: 600px;
+    width: 50%;
 
     position: relative;
     border-bottom: 3px solid #002A71;
@@ -43,25 +44,36 @@ main{
     box-shadow: 0px 4px 9px 0px #0000004d;
 
     .update_img{
-        margin: 30px 0 ;
+        background-color: #002A71;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height:fit-content ;
+        margin: 60px auto ;
+        border-radius: 10000px;
         .update_profail_message_error{
-            margin: -15px 0 0 10px;
+            position: absolute;
+            top: 400px;
+            left: calc(25% - 125px);
+            margin: 0px auto;
             text-align: center;
-            color:rgb(128, 0, 0) ;
+            color:rgb(181, 60, 60) ;
             font-size: 13px;
             font-weight: 700;
             width: 250px;
         }
         p{
-            margin: -20px 0 0 0 ;
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            z-index: 11;
             color: #002A71;
             font-weight: 600;
         }
-        img{
-            margin: 30px auto  ;
+        .img{
             width: 250px;
             height: 250px;
-            border-bottom: 2px solid #002A71;;
+            border-bottom: 2px solid #002A71;
             border-radius : 1000px;
             background-color:   #CBDCEB;
         }
@@ -69,13 +81,21 @@ main{
     form{
         padding: 0 15px ;
         color: #002A71;
-        /* line-height: 35px; */
-        /* background-color: aqua; */
-
         width: 50%;
         height: fit-content;
         display: flex;
         flex-direction: column;
+
+        span{
+            margin-top: 10px;
+            text-align: center;
+            a{
+                color: #002A71;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+        }
 
         input{
             border:1px solid  #002A71;
@@ -109,7 +129,7 @@ main{
         }
         .update_profail_message_error{
             margin: -10px 0 10px 0;
-            color:rgb(128, 0, 0) ;
+            color:rgb(181, 60, 60) ;
             font-size: 13px;
             font-weight: 700;
         }

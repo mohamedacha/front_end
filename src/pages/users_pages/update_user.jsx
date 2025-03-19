@@ -139,7 +139,7 @@ export default function UpdateUser() {
         <div className="update_profail">
             <label htmlFor="img" className="update_img">
                 <p> photo :</p>
-                <img src={data.img || ''} />
+                <img src={data.img || ''} className="img" />
                 {errors && <>{errors.img &&<p className="update_profail_message_error"  >{errors.img}</p>}</>}
             </label>
             <form className="right_part" onSubmit={handleSubmit} encType="multipart/form-data">
