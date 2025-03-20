@@ -16,6 +16,7 @@ import UpdateUser from './pages/users_pages/update_user';
 import OrdersCard from './pages/orders_pages/ordersCard';
 import Update_order from './pages/orders_pages/Update_order';
 import CreateUser from './pages/users_pages/create_user';
+import Login from './pages/users_pages/login';
 
 export default function App() {
   return (
@@ -28,18 +29,17 @@ export default function App() {
         </Route>
 
         <Route path='/users' element={<Layoute/>}>
-          <Route path='index' element={<Products/>} />
+          <Route path='login' element={<Login/>} />
           <Route path='create' element={<CreateUser/>} />
-          <Route path='update' element={<UpdateUser/>} />
-          <Route path='show' element={<Profaile/>} />
+          <Route path='update/:id' element={<UpdateUser/>} />
+          <Route path='show/:id' element={<Profaile/>} />
         </Route>
 
         <Route path='/products' element={<Layoute/>}>
           <Route index element={<Products/>} />
           <Route path='create' element={<Products/>} />
-          <Route path='update' element={<Services/>} />
-          <Route path='show/:id' element={<ProductDetails/>
-} />
+          <Route path='update/:id' element={<Services/>} />
+          <Route path='show/:id' element={<ProductDetails/>} />
         </Route>
 
         <Route path='/services' element={<Layoute/>}>

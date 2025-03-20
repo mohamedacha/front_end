@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as AddIcon } from '../../svg/add.svg';
 
 
@@ -9,6 +9,7 @@ export default function CreateUser() {
     const [user, setUser] = useState({ name: '', address: "", password: "", img: null, phone_number: "", email: '', });
 
     const [errors, setErrors] = useState();
+    const navigate = useNavigate();
 
 
     const handleChange = (e) => {
@@ -57,7 +58,10 @@ export default function CreateUser() {
                     }));
                 }
                 throw new Error(result?.message || "Failed to create user");
-            } else { setErrors({ message: result.message }); }
+            } else { 
+                navigate(`/users/show/${result.data.id}`)
+                setErrors({ message: result.message }); 
+            }
 
 
         } catch (error) { console.error('// ', error.message) }
@@ -113,7 +117,7 @@ export default function CreateUser() {
 
 
                     <button type="submit" >create</button>
-                    <span><Link to=''>i alredy have an account</Link></span>
+                    <span><Link to='/users/login'>i alredy have an account</Link></span>
                 </form>
             </div>
         </>

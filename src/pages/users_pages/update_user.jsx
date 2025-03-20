@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import '../../css_files/update_user.css';
+import { useNavigate, useParams } from "react-router-dom";
 export default function UpdateUser() {
 
     const [user, setUser] = useState([]);
+    const {id} = useParams() ;
     const [errors , setErrors] = useState();
+    const navigate = useNavigate() ;
     const [data, setData] = useState({ name: '' , address: "", password: "", img: null, phone_number: "", checkbox: false, });
 
     //FETCH DATA AND PUT IN IN USER COMPONENT------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
         const get_user = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/users/1');
+                const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`);
                 const data = await response.json();
                 console.log(data.user.img)
                 setUser(data.user); //
@@ -30,7 +33,6 @@ export default function UpdateUser() {
                 ...user ,
                 checkbox : false
             }))
-            // setData({ name: user.name || "", address: user.address || "", password: user.password || "", img: user.img || null, phone_number: user.phone_number || "", checkbox: false, });
         }
     }, [user])
 
@@ -63,7 +65,7 @@ export default function UpdateUser() {
             if (data.img instanceof File ) {formData.append("img", data.img);}
             
         //SEND POST REQUEST WITH FORMDATA TO UPDATE USER ---------------------------------
-            const response = await fetch('http://127.0.0.1:8000/api/users/1', {
+            const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -83,7 +85,8 @@ export default function UpdateUser() {
                 }
                 throw new Error(result?.message || "Failed to update user");
             }else{
-                setErrors({message :result.message  });
+                navigate(`users/show/${id}`)
+                // setErrors({message :result.message  });
             }
 
 
@@ -116,6 +119,7 @@ export default function UpdateUser() {
         }
         get_user();
     }
+    
     const desepere = ()=>{
         setTimeout(() => {
             setErrors({message : ''})

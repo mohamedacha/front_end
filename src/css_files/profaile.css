@@ -21,7 +21,8 @@ main{
     padding: 10px;
     height: 400px;
     max-width: 80%;
-    width: 600px;
+    width: fit-content;
+    min-width: 650px;
 
     position: absolute;
     border-bottom: 3px solid #002A71;
@@ -34,20 +35,33 @@ main{
         width: 250px;
         height: 250px;
         border-bottom: 2px solid #002A71;
+        /* background-color: #002A71; */
         border-radius : 1000px;
         background-color:   #CBDCEB;
     }
 
     .right_part{
+        width: 50%;
         padding-top: 50px ;
         color: #002A71;
         font-size: 18px;
         line-height: 35px;
+        /* background-color: blueviolet; */
+        overflow: hidden;
 
-        width: 50%;
+        min-width: 50%;
         display: flex;
         align-items: center;
         flex-direction: column;
+
+        span{
+            line-height: 25px;
+            width: 90%;
+            margin-bottom: 15px;
+            text-align: center;
+            word-wrap: break-word;
+            /* background-color: #CBDCEB; */
+        }
 
         .update,
         .logout{
@@ -60,10 +74,10 @@ main{
             background-color: #002A71;
         }
         .logout{
-            bottom: 100px;
+            bottom: 60px;
         }
         .update{
-            bottom: 140px;
+            bottom: 100px;
         }
     }
 
