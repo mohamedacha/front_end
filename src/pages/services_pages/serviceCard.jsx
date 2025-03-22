@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../css_files/ServiceCards.css"; // Import the CSS file
 import { useParams } from "react-router-dom";
+import { ReactComponent as Mail } from "../../svg/maile.svg";
+import { ReactComponent as CustomerService } from "../../svg/customer-service.svg";
 
 const ServiceCard = () => {
   const [service, setService] = useState({ description: '' });
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const get_service = async () => {
@@ -21,7 +23,7 @@ const ServiceCard = () => {
     get_service()
   }, []);
 
-  
+
 
 
   return (
@@ -31,17 +33,22 @@ const ServiceCard = () => {
         <h2 className="service-title">{service.type}</h2>
         <span>Description:</span>
         <br />
-        <h3 className="service-description">{service.description}</h3>
+        <p className="service-description">{service.description}</p>
         <hr />
         <span>contact us:</span>
         <div className="contact">
-          phone :
-          <br />
-          mail :
+          <div className="conta_CustomerService">
+            <CustomerService width={45} height={45} />
+            <p className="contact_info">00000000000</p>
+          </div>
+        <div className="contact_mail">
+          <Mail width={47} height={40} />
+          <p className="contact_info">maile@admin.hh</p>
+        </div>
         </div>
       </div>
       <img className="product-img" src={service.img} alt="" />
-      
+
 
     </div>
   );

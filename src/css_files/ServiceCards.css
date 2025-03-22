@@ -1,4 +1,5 @@
 .service_Container {
+  position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,7 +8,7 @@
     border-bottom: 2px solid #004aad;
     min-height: 450px;
     width: 80%;
-    max-width: 700px;
+    max-width: 900px;
     padding: 5px 20px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
     overflow-y: hidden;
@@ -18,6 +19,7 @@
     }
     .product-img{
       height: 400px;
+      width: 220px;
       z-index: 3;
     }
     span {
@@ -28,7 +30,9 @@
     }
 
     .service-description{
+      width: 80%;
       margin:-10px 0 10px 0;
+      font-weight: 500;
     }  
     .service-title{
       color: #004aad; /* Dark blue */
@@ -37,10 +41,24 @@
     }  
     hr{
       display: block;
+      width: 90%;
       height: 3px;
       margin-top: 20xp;
       background-color: #004aad;
     }
+    .contact {
+      margin-top: 20px;
+      /* background-color: aqua; */
+    }
+    .conta_CustomerService,
+    .contact_mail{
+      display: flex;
+      align-items: center;
+      p{
+        margin-left: 10px;
+      }
+    }
+
   }
   
   
