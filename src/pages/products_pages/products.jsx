@@ -2,17 +2,12 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./productCard";
 import '../../css_files/products.css' ;
-// import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 export default function Products() {
     const [products, setProducts] = useState([])
-    // const navigate = useNavigate()
-    // const token = localStorage.getItem('authToken')
-
 
     useEffect(() => {
-        // if(!token){ navigate('/users/login');}
         const get_products = async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/products');
@@ -31,7 +26,9 @@ export default function Products() {
 
         <div className="products">
             {products.map((product, index) => (
-                <ProductCard key={index} product={product} />
+                    <Link to ={`/products/show/${product.id}`}>
+                        <ProductCard key={index} product={product} />
+                    </Link>
             ))}
         </div>
 

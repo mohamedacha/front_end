@@ -19,50 +19,70 @@ import CreateUser from './pages/users_pages/create_user';
 import Login from './pages/users_pages/login';
 import AddProduct from './pages/products_pages/addproduct';
 import AddService from './pages/services_pages/addservice';
+import { createContext, useEffect, useState } from 'react';
+
+export const AppContext = createContext({})
 
 export default function App() {
+  
+  const [token , setToken] = useState(localStorage.getItem('authToken') || '')
+  const updateToken = (token) => setToken(token)
+  
   return (
-      <>
+    <AppContext.Provider value={{ token , updateToken }}>
       <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layoute/>}>
-          <Route index element={<Home/>}/>
-          <Route path='*' element={<NotFound/>} />
-        </Route>
+        <Routes>
+          <Route path='/' element={<Layoute />}>
+            <Route index element={<Home />} />
+            <Route path='*' element={<NotFound />} />
+          </Route>
 
-        <Route path='/users' element={<Layoute/>}>
-          <Route path='login' element={<Login/>} />
-          <Route path='create' element={<CreateUser/>} />
-          <Route path='update/:id' element={<UpdateUser/>} />
-          <Route path='show/:id' element={<Profaile/>} />
-        </Route>
+          <Route path='/users' element={<Layoute />}>
+            {token ? (<>
+              <Route path='create' element={<CreateUser />} />
+              <Route path='update/:id' element={<UpdateUser />} />
+              <Route path='show/:id' element={<Profaile />} />
+            </>
+            ) : (
+              <Route path='login' element={<Login />} />
+            )}
 
-        <Route path='/products' element={<Layoute/>}>
-          <Route index element={<Products/>} />
-          <Route path='create' element={<AddProduct/>} />
-          <Route path='update/:id' element={<Services/>} />
-          <Route path='show/:id' element={<ProductDetails/>} />
-        </Route>
+          </Route>
 
-        <Route path='/services' element={<Layoute/>}>
-          <Route index element={<Services/>} />
-          <Route path='create' element={<AddService/>} />
-          <Route path='servic.update' element={<Services/>} />
-          <Route path='show/:id' element={<ServiceCard/>} />
-        </Route>   
+          <Route path='/products' element={<Layoute />}>
+            <Route index element={<Products />} />
+            <Route path='show/:id' element={<ProductDetails />} />
+            {token && (
+              <>
+                <Route path='create' element={<AddProduct />} />
+                <Route path='update/:id' element={<Services />} />
+              </>)}
+          </Route>
 
-               
+          <Route path='/services' element={<Layoute />}>
+            <Route index element={<Services />} />
+            <Route path='show/:id' element={<ServiceCard />} />
+            {token && (
+              <>
+                <Route path='create' element={<AddService />} />
+                <Route path='update' element={<Services />} />
+              </>
+            )}
+          </Route>
 
-        <Route path='/orders' element={<Layoute/>}>
-          <Route index element={<OrdersCard/>} />
-          <Route path='order.create' element={<Services/>} />
-          <Route path='update/:id' element={<Update_order/>} />
-          <Route path='show' element={<ProductDetails/>} />
-        </Route>
 
-      </Routes>
+          {token && (
+            <Route path='/orders' element={<Layoute />}>
+              <Route index element={<OrdersCard />} />
+              <Route path='order.create' element={<Services />} />
+              <Route path='update/:id' element={<Update_order />} />
+              <Route path='show' element={<ProductDetails />} />
+            </Route>
+          )}
+
+        </Routes>
       </BrowserRouter>
-      </>
+    </AppContext.Provider>
   );
 }
 

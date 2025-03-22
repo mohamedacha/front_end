@@ -1,19 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import '../../css_files/update_user.css';
 import { useNavigate, useParams } from "react-router-dom";
+import { AppContext } from "../../App";
 export default function UpdateUser() {
 
     const [user, setUser] = useState([]);
+    const [data, setData] = useState({ name: '' , address: "", password: "", img: null, phone_number: "", checkbox: false, });
     const {id} = useParams() ;
     const [errors , setErrors] = useState();
     const navigate = useNavigate() ;
-    const [data, setData] = useState({ name: '' , address: "", password: "", img: null, phone_number: "", checkbox: false, });
+    const {token , updateToken} = useContext(AppContext);
 
     //FETCH DATA AND PUT IN IN USER COMPONENT------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
         const get_user = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`);
+                const response = await fetch(`http://127.0.0.1:8000/api/users/${id}` , {
+                    headers: {
+                        'Accept' : 'application/json' ,
+                        'authorization' : `Bearer ${token}`
+                    }
+                });
                 const data = await response.json();
                 console.log(data.user.img)
                 setUser(data.user); //
@@ -69,6 +76,7 @@ export default function UpdateUser() {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
+                    'authorization' : `Bearer ${token}`
                 },
                 body: formData,
             });
@@ -85,8 +93,7 @@ export default function UpdateUser() {
                 }
                 throw new Error(result?.message || "Failed to update user");
             }else{
-                navigate(`users/show/${id}`)
-                // setErrors({message :result.message  });
+                navigate(`/users/show/${id}`)
             }
 
 

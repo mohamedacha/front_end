@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import '../../css_files/login.css'
 import { stringify } from "ajv";
+import { AppContext } from "../../App";
 
 export default function Login() {
 
     const [errors, setErrors] = useState();
     const [user, setUser] = useState({email : "" , password : ""});
     const navigate = useNavigate() ;
+    const {updateToken} = useContext(AppContext) ;
+    
 
     const handleChange = (e) => { 
         setUser({...user, [e.target.name]: e.target.value})
@@ -26,12 +29,8 @@ export default function Login() {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
-                        // "Content-Type": "application/json", // Ensure proper JSON encoding
-
                     },
                     body: formData,
-                    // body: JSON.stringify({ email: user.email, password: user.password }), // Send JSON, not FormData
-
                 });
 
                 const result = await response.json();
@@ -47,7 +46,10 @@ export default function Login() {
                     }
                     throw new Error(result?.message || "Failed to create user");
                 } else {
-                    if(result.token) localStorage.setItem("authToken" , result.token)
+                    if(result.token) {
+                        localStorage.setItem("authToken" , result.token)
+                        updateToken(result.token) ;
+                    }
                     navigate(`/users/show/${result.user.id}`)
                 }
             } catch (e) {

@@ -1,23 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import '../../css_files/profaile.css'
+import { AppContext } from "../../App";
 
 export default function Profaile() {
-    const token = localStorage.getItem("authToken");
-    console.log(token)
+    // const token = localStorage.getItem("authToken");
+    // console.log(token)
     const [user, setUser] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
-    if (!token) navigate('/users/login') ;
+    const {token ,updateToken} = useContext(AppContext) ;
 
     const logOut = async () => {
-        // const token = localStorage.getItem("authToken");
-
-        if (!token) {
-            console.error("No token found, user is not logged in");
-            return;
-        }
-
         try {
             const response = await fetch("http://127.0.0.1:8000/api/users/logout", {
                 method: "POST",
@@ -28,8 +22,8 @@ export default function Profaile() {
             });
 
             if (response.ok) {
-                localStorage.removeItem("authToken"); // Clear token from storage
-                console.log("Logged out successfully");
+                localStorage.removeItem("authToken");
+                updateToken('') ;
                 navigate(`/users/login`)
 
             } else {
