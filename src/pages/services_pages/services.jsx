@@ -11,6 +11,7 @@ export default function Services() {
     const [services, setServices] = useState([])
 
     useEffect(() => {
+        // if(!token){ navigate('/users/login');}
         const get_services = async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/services');

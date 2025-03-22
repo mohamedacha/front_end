@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 // import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function OrdersCard() {
   const [orders, setOrders] = useState([])
+  const navigate = useNavigate()
+  const token = localStorage.getItem('authToken')
+
 
   useEffect(() => {
+    if (!token){navigate('/users/login')}
+    
     const get_Orders = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/orders');

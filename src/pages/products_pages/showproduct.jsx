@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../css_files/productDetails.css";
 
 const ProductDetails = () => {
@@ -9,12 +9,18 @@ const ProductDetails = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const { id } = useParams();
+  const token = localStorage.getItem('authToken');
+  const Navigate = useNavigate()
+
+
 
   useEffect(() => {
+    console.log(token)
     const get_product = async () => {
       try {
         const respons = await fetch(`http://127.0.0.1:8000/api/products/${id}`);
         const data = await respons.json();
+        console.log(data.data)
         setProduct(data.data);
         console.log(data.data);
         if (!respons.ok) console.error(data.message)
@@ -26,18 +32,20 @@ const ProductDetails = () => {
 
   const handlSubmit = async (e) => {
     e.preventDefault()
+
+    if(!token){Navigate('/users/login')}
     try {
       const formData = new FormData();
       formData.append('confirmed', 0);
       formData.append('quantity', OrderQuantity);
       formData.append('user_id', 1);// authontification
       formData.append('product_id', product.id);
-      // formData.append('_method', 'PUT') ;
 
       const response = await fetch(`http://127.0.0.1:8000/api/orders`, {
         method: 'POST',
         headers: {
           "Accept": "application/json",
+          "authorization" : `Bearer ${token}`
         },
         body: formData,
       })
