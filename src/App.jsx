@@ -17,6 +17,8 @@ import OrdersCard from './pages/orders_pages/ordersCard';
 import Update_order from './pages/orders_pages/Update_order';
 import CreateUser from './pages/users_pages/create_user';
 import Login from './pages/users_pages/login';
+import AddProduct from './pages/products_pages/addproduct';
+import AddService from './pages/services_pages/addservice';
 
 export default function App() {
   return (
@@ -37,14 +39,14 @@ export default function App() {
 
         <Route path='/products' element={<Layoute/>}>
           <Route index element={<Products/>} />
-          <Route path='create' element={<Products/>} />
+          <Route path='create' element={<AddProduct/>} />
           <Route path='update/:id' element={<Services/>} />
           <Route path='show/:id' element={<ProductDetails/>} />
         </Route>
 
         <Route path='/services' element={<Layoute/>}>
           <Route index element={<Services/>} />
-          <Route path='servic.create' element={<Services/>} />
+          <Route path='create' element={<AddService/>} />
           <Route path='servic.update' element={<Services/>} />
           <Route path='show/:id' element={<ServiceCard/>} />
         </Route>   
