@@ -15,7 +15,7 @@ export default function UpdateUser() {
     useEffect(() => {
         const get_user = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/users/${id}` , {
+                const response = await fetch(`http://127.0.0.1:8000/api/users/${localStorage.getItem('userId')}` , {
                     headers: {
                         'Accept' : 'application/json' ,
                         'authorization' : `Bearer ${token}`
@@ -72,7 +72,7 @@ export default function UpdateUser() {
             if (data.img instanceof File ) {formData.append("img", data.img);}
             
         //SEND POST REQUEST WITH FORMDATA TO UPDATE USER ---------------------------------
-            const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/users/${localStorage.getItem('userId')}`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -93,7 +93,7 @@ export default function UpdateUser() {
                 }
                 throw new Error(result?.message || "Failed to update user");
             }else{
-                navigate(`/users/show/${id}`)
+                navigate(`/users/show`)
             }
 
 

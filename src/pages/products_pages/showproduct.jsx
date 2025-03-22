@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css_files/productDetails.css";
+import { AppContext } from "../../App";
 
 const ProductDetails = () => {
 
@@ -9,7 +10,7 @@ const ProductDetails = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const { id } = useParams();
-  const token = localStorage.getItem('authToken');
+  const {token} = useContext(AppContext) 
   const Navigate = useNavigate()
 
 

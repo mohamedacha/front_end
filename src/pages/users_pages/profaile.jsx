@@ -4,10 +4,8 @@ import '../../css_files/profaile.css'
 import { AppContext } from "../../App";
 
 export default function Profaile() {
-    // const token = localStorage.getItem("authToken");
-    // console.log(token)
+
     const [user, setUser] = useState([]);
-    const { id } = useParams();
     const navigate = useNavigate();
     const {token ,updateToken} = useContext(AppContext) ;
 
@@ -23,6 +21,7 @@ export default function Profaile() {
 
             if (response.ok) {
                 localStorage.removeItem("authToken");
+                localStorage.removeItem("userId");
                 updateToken('') ;
                 navigate(`/users/login`)
 
@@ -39,7 +38,7 @@ export default function Profaile() {
         if (!token) navigate('/users/login') ;
         const get_user = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+                const response = await fetch(`http://127.0.0.1:8000/api/users/${localStorage.getItem('userId')}`, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Accept": "application/json",
@@ -63,7 +62,7 @@ export default function Profaile() {
                 <span className="username">{user.name}</span>
                 <span className="useremail">{user.email}</span>
                 <span className="userphone_number">{user.phone_number}</span>
-                <Link to={`/users/update/${id}`} className="update"> update</Link>
+                <Link to={`/users/update`} className="update"> update</Link>
                 <a className="logout" onClick={logOut}> log out</a>
             </div>
         </div>

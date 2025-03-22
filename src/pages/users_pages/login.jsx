@@ -50,7 +50,8 @@ export default function Login() {
                         localStorage.setItem("authToken" , result.token)
                         updateToken(result.token) ;
                     }
-                    navigate(`/users/show/${result.user.id}`)
+                    localStorage.setItem('userId' , result.user.id )
+                    navigate("/users/show") ;
                 }
             } catch (e) {
                 console.error('error message ', e.message);

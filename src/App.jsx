@@ -40,8 +40,8 @@ export default function App() {
           <Route path='/users' element={<Layoute />}>
             {token ? (<>
               <Route path='create' element={<CreateUser />} />
-              <Route path='update/:id' element={<UpdateUser />} />
-              <Route path='show/:id' element={<Profaile />} />
+              <Route path='update' element={<UpdateUser />} />
+              <Route path='show' element={<Profaile />} />
             </>
             ) : (
               <Route path='login' element={<Login />} />
