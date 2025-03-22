@@ -1,5 +1,5 @@
 
-import '../../css_files/productCard.css'
+import '../../css_files/ProductCard.css'
 // import { useState } from 'react'
 
 
