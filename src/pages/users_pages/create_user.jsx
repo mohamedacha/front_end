@@ -11,7 +11,8 @@ export default function CreateUser() {
 
     const [errors, setErrors] = useState();
     const navigate = useNavigate();
-    const{updateToken} = useContext(AppContext())
+    const {updateToken} = useContext(AppContext)
+    
 
 
     const handleChange = (e) => {
@@ -59,9 +60,12 @@ export default function CreateUser() {
                 }
                 throw new Error(result?.message || "Failed to create user");
             } else {
-                localStorage.setItem('authToken', result.token)
-                updateToken(result.token) ;
-                navigate(`/users/show/${result.data.id}`)
+                if(result.token){
+                    localStorage.setItem('authToken', result.token)
+                    updateToken(result.token) ;
+                }
+                    localStorage.setItem('userId', result.data.id)
+                    navigate(`/users/show`)
             }
         } catch (error) { console.error('// ', error.message) }
     }

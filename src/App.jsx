@@ -24,12 +24,12 @@ import { createContext, useEffect, useState } from 'react';
 export const AppContext = createContext({})
 
 export default function App() {
-  
-  const [token , setToken] = useState(localStorage.getItem('authToken') || '')
+
+  const [token, setToken] = useState(localStorage.getItem('authToken') || '')
   const updateToken = (token) => setToken(token)
-  
+
   return (
-    <AppContext.Provider value={{ token , updateToken }}>
+    <AppContext.Provider value={{ token, updateToken }}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layoute />}>
@@ -39,12 +39,14 @@ export default function App() {
 
           <Route path='/users' element={<Layoute />}>
             {token ? (<>
-              <Route path='create' element={<CreateUser />} />
               <Route path='update' element={<UpdateUser />} />
               <Route path='show' element={<Profaile />} />
             </>
             ) : (
-              <Route path='login' element={<Login />} />
+              <>
+                <Route path='create' element={<CreateUser />} />
+                <Route path='login' element={<Login />} />
+              </>
             )}
 
           </Route>

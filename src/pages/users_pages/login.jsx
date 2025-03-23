@@ -19,7 +19,6 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault() ;
         const getUser = async () => {
-            
             try {
                 const formData = new FormData();
                 formData.append('email', user.email);
