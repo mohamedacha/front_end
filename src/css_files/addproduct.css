@@ -1,58 +1,85 @@
 .add-product-container {
-    width: 50%;
-    margin: auto;
-    background-color: #d0e2f2;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  h2 {
-    color: #0056b3;
-    font-size: 22px;
-    margin-bottom: 15px;
-  }
-  
-  .product-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .form-left, .form-right {
-    width: 80%;
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input, textarea {
+  width: 60%;
+  max-width: 700px;
+  background: #d1e5f5;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+}
+
+h2 {
+  color: #003f88;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.product-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-group {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.form-group.full-width {
+  width: 100%;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #003f88;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 2px solid #003f88;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+input[type="file"] {
+  padding: 5px;
+}
+
+button {
+  background: #003f88;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #002b66;
+}
+
+@media (max-width: 768px) {
+  .form-group {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
   }
-  
-  textarea {
-    height: 80px;
-    resize: none;
-  }
-  
-  button {
-    background-color: #0056b3;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    background-color: #003d82;
-  }
-  
+}

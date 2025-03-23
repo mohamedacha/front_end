@@ -1,26 +1,14 @@
-import { useState, useEffect } from "react";
-import "../../css_files/addservice.css"; // Import the CSS file
+import { useState } from "react";
+import "../../css_files/addservice.css";
 
-const AddService = ({ existingService, onSave }) => {
+const AddService = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    type: "",
+    available: false,
     description: "",
-    image: null,
+    img: null,
   });
-
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
-  // Pre-fill form when updating
-  useEffect(() => {
-    if (existingService) {
-      setFormData({
-        name: existingService.name || "",
-        description: existingService.description || "",
-        image: existingService.image || null,
-      });
-    }
-  }, [existingService]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,104 +16,74 @@ const AddService = ({ existingService, onSave }) => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    setFormData({ ...formData, img: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
+  e.preventDefault();
 
-    if (existingService) {
-      await handleUpdate();
-    } else {
-      await handleAdd();
+  const formDataToSend = new FormData();
+  formDataToSend.append("type", formData.type);
+  formDataToSend.append("available", formData.available === "yes" ? 1 : 0);
+  formDataToSend.append("description", formData.description);
+  if (formData.image) {
+    formDataToSend.append("img", formData.image);
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/services", {
+      method: "POST",
+      body: formDataToSend,
+    });
+
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      throw new Error("Invalid response from server");
     }
 
-    setLoading(false);
-  };
+    const data = await response.json();
 
-  const handleAdd = async () => {
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("description", formData.description);
-      if (formData.image) {
-        formDataToSend.append("image", formData.image);
-      }
-
-      const response = await fetch("http://127.0.0.1:8000/api/services", {
-        method: "POST",
-        body: formDataToSend,
-      });
-
-      if (!response.ok) throw new Error("Failed to add service");
-
-      const data = await response.json();
-      setMessage("Service added successfully!");
-      onSave(data);
-    } catch (error) {
-      setMessage("Error adding service.");
-      console.error(error);
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to add service");
     }
-  };
 
-  const handleUpdate = async () => {
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("description", formData.description);
-      if (formData.image) {
-        formDataToSend.append("image", formData.image);
-      }
-      formDataToSend.append("_method", "PUT"); // Laravel requires this for PUT
-
-      const response = await fetch(`http://127.0.0.1:8000/api/services/${existingService.id}`, {
-        method: "POST", // Using POST with _method PUT for Laravel
-        body: formDataToSend,
-      });
-
-      if (!response.ok) throw new Error("Failed to update service");
-
-      const data = await response.json();
-      setMessage("Service updated successfully!");
-      onSave(data);
-    } catch (error) {
-      setMessage("Error updating service.");
-      console.error(error);
-    }
-  };
+    alert("Service added successfully!");
+    console.log("Success:", data);
+  } catch (error) {
+    console.error("Error adding service:", error);
+    alert("Error adding service: " + error.message);
+  }
+};
 
   return (
     <div className="add-service-container">
-      <h2>{existingService ? "Update Service" : "Add Service"}</h2>
-      {message && <p className="message">{message}</p>}
+      <h2>add service</h2>
+      {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} className="service-form">
-        <div className="form-row">
-          <div className="form-group">
-            <label>Service Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Upload Image:</label>
-            <input type="file" name="image" accept="image/*" onChange={handleFileChange} />
-          </div>
+        <div className="form-group">
+          <label>Service Type:</label>
+          <input type="text" name="type" value={formData.type} onChange={handleChange} required />
+        </div>
+
+        <div className="form-group">
+          <label>Available:</label>
+          <select name="available" value={formData.available} onChange={handleChange} required>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
+          </select>
         </div>
 
         <div className="form-group">
           <label>Service Description:</label>
-          <textarea name="description" value={formData.description} onChange={handleChange}></textarea>
+          <textarea name="description" value={formData.description} onChange={handleChange} required></textarea>
         </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Processing..." : existingService ? "Update Service" : "Add Service"}
-        </button>
+        <div className="form-group">
+          <label>Upload Image:</label>
+          <input type="file" name="img" accept="image/*" onChange={handleFileChange} />
+        </div>
+
+        <button type="submit">Add Service</button>
       </form>
     </div>
   );
