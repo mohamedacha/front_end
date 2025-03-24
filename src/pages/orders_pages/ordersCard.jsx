@@ -49,7 +49,9 @@ export default function OrdersCard() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
+          "Accept": "application/json",
+          "Authorization" : `Bearer ${token}` ,
+
         },
       });
 
@@ -74,7 +76,7 @@ export default function OrdersCard() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
+          "Accept": "application/json",
         },
       });
 

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../../css_files/addservice.css";
+import { AppContext } from "../../App";
 
 const AddService = () => {
+  const {token} = useContext(AppContext)
   const [formData, setFormData] = useState({
     type: "",
     available: false,
@@ -33,6 +35,9 @@ const AddService = () => {
   try {
     const response = await fetch("http://127.0.0.1:8000/api/services", {
       method: "POST",
+      headers:{
+        "Authorization" : `Bearer ${token}` ,
+      },
       body: formDataToSend,
     });
 

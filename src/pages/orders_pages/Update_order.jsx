@@ -9,7 +9,7 @@ const Update_order = () => {
     const [errorMessage , setErrorMessage] =useState('') ;
     const [successMessage , setSuccessMessage] =useState('') ;
     const { id } = useParams();
-    const token = useContext(AppContext)
+    const {token} = useContext(AppContext)
 
     useEffect(()=>{
         const get_Order = async()=>{
@@ -17,8 +17,8 @@ const Update_order = () => {
 
                 const respons = await fetch(`http://127.0.0.1:8000/api/orders/${id}` , {
                     headers:{
-                        'Accept' : 'Application/json' ,
-                        "Authorization" : `Bearer ${token}`
+                        "Accept": "application/json",
+                        "Authorization" : `Bearer ${token}` ,
                     }
                 });
                 const data = await respons.json();

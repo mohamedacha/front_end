@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import '../../css_files/addproduct.css';
+import { AppContext } from "../../App";
 const AddProduct = () => {
+  const {token} = useContext(AppContext)
   const [formData, setFormData] = useState({
     product_name: "",
     price: "",
@@ -35,6 +37,10 @@ const AddProduct = () => {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/products", {
         method: "POST",
+        headers:{
+          "Accept" : "application/json" ,
+          "Authorization" : `Bearer ${token}` ,
+        },
         body: formDataToSend,
       });
 
