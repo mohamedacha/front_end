@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AppContext } from "../../App";
 // import "../../css_files/productDetails.css";
 
 const Update_order = () => {
@@ -8,12 +9,18 @@ const Update_order = () => {
     const [errorMessage , setErrorMessage] =useState('') ;
     const [successMessage , setSuccessMessage] =useState('') ;
     const { id } = useParams();
+    const token = useContext(AppContext)
 
     useEffect(()=>{
         const get_Order = async()=>{
             try{
 
-                const respons = await fetch(`http://127.0.0.1:8000/api/orders/${id}`);
+                const respons = await fetch(`http://127.0.0.1:8000/api/orders/${id}` , {
+                    headers:{
+                        'Accept' : 'Application/json' ,
+                        "Authorization" : `Bearer ${token}`
+                    }
+                });
                 const data = await respons.json();
                 setOrder(data);
                 console.log(data);
@@ -35,6 +42,7 @@ const Update_order = () => {
                 method : 'POST' ,
                 headers: {
                     "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
                 body : formData ,
             })

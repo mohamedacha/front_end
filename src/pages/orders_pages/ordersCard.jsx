@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
 import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../App";
 
 
 export default function OrdersCard() {
   const [orders, setOrders] = useState([])
   const navigate = useNavigate()
-  const token = localStorage.getItem('authToken')
+  const {token} = useContext(AppContext)
 
 
   useEffect(() => {
@@ -15,7 +16,13 @@ export default function OrdersCard() {
     
     const get_Orders = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/orders');
+        const response = await fetch('http://127.0.0.1:8000/api/orders' ,{
+          headers : {
+            // 'authorization' : `Bearer ${token}`,
+            'Accept' : 'application/json' ,
+          }}
+
+        );
         const data = await response.json();
         console.log(data)
         setOrders(data.data);
@@ -91,21 +98,8 @@ export default function OrdersCard() {
 
 
   // Render Component
-  <OrdersCard orders={orders} handleUpdate={handleUpdate} handleDelete={handleDelete} handleConfirm={handleConfirm} />;
+  // <OrdersCard orders={orders} handleUpdate={handleUpdate} handleDelete={handleDelete} handleConfirm={handleConfirm} />;
 
-
-  // Sample order data
-  // const orders = [
-  //   {
-  //     id: 1,
-  //     product: "CPJ45",
-  //     price: "200 DHS",
-  //     quantity: 1000,
-  //     totalPrice: "200000 DHS",
-  //     orderDate: "25/2/2024",
-  //     confirmed: true,
-  //   },
-  // ];
 
   // Filter orders based on search input
   // const filteredOrders = orders.filter((order) =>

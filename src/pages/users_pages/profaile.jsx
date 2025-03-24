@@ -38,7 +38,6 @@ export default function Profaile() {
         if (!token) navigate('/users/login') ;
         const get_user = async () => {
             try {
-                // const response = await fetch(`http://127.0.0.1:8000/api/users/34}`, {
                 const response = await fetch(`http://127.0.0.1:8000/api/users/${localStorage.getItem('userId')}`, {
                     headers: {
                         "Authorization": `Bearer ${token}`,
