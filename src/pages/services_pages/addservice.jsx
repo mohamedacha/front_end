@@ -28,8 +28,8 @@ const AddService = () => {
   formDataToSend.append("type", formData.type);
   formDataToSend.append("available", formData.available === "yes" ? 1 : 0);
   formDataToSend.append("description", formData.description);
-  if (formData.image) {
-    formDataToSend.append("img", formData.image);
+  if (formData.img instanceof File) {
+    formDataToSend.append("img", formData.img);
   }
 
   try {

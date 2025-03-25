@@ -24,8 +24,9 @@
     img{
         cursor: pointer;
         position: absolute;
+        user-select: none;
         height: 400px;
-        width: 220px;
+        right: -40%;
     }
     .service-title{
         position: absolute;

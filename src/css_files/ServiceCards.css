@@ -17,10 +17,21 @@
       width: 100% ;
       min-height: 400px;
     }
-    .product-img{
+    .img_container{
+      position: relative;
+      background-color: #0091ff;
       height: 400px;
-      width: 220px;
+      width: 400px;
+      overflow: hidden;
+      border-radius: 15px;
+      border: 1px solid #004aad;
       z-index: 3;
+      padding: 0;
+      .service_img{
+        cursor: pointer;
+        position: absolute;
+        height: 400px;
+      }
     }
     span {
       margin-top: 10px;

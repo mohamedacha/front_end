@@ -39,7 +39,7 @@ const ServiceCard = () => {
         <div className="contact">
           <div className="conta_CustomerService">
             <CustomerService width={45} height={45} />
-            <p className="contact_info">00000000000</p>
+            <p className="contact_info">+121655050249</p>
           </div>
         <div className="contact_mail">
           <Mail width={47} height={40} />
@@ -47,7 +47,9 @@ const ServiceCard = () => {
         </div>
         </div>
       </div>
-      <img className="product-img" src={service.img} alt="" />
+      <div className="img_container">
+      <img className="service_img" src={service.img} alt="" />
+      </div>
 
 
     </div>
