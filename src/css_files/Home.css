@@ -1,69 +1,78 @@
-/* HomePage.css */
 
-.Home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.Home_page {
+  position: relative;
+  overflow-y: hidden;
+
+  width: 100%;
+  height: 87.5vh;
+
+  img {
+    position: absolute;
+    right: 0px;
+    top: -15%;
     width: 100%;
-    min-height: 100vh;
-    background-color: #f8f9fa;
+    height: fit-content;
+    z-index: -10;
+    user-select: none;
   }
-  
-  .search-bar {
-    display: flex;
-    margin: 20px 0;
-  }
-  
-  .search-input {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px 0 0 20px;
-    outline: none;
-  }
-  
-  .search-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
-  }
-  
-  .sections-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 20px;
-  }
-  
-  .section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .home_page_title{
+    width: 500px;    
+    font-size: 23px;
+    font-weight: 900;
+
     text-align: center;
-    width: 40%;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: calc(50% - 250px);
+    bottom: 250px;
+
+    padding: 5px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #002A71;
+    a{
+      text-decoration: none;
+      color: #0b4dbe;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+    
   }
+  .search-bar-home {
+    position: absolute;
+    display: flex;
+    left: calc(50% - 300px);
+    top: calc(50% - 20px);
   
-  .section-image {
-    width: 80%;
-    max-width: 300px;
-    margin-bottom: 15px;
+    width: 600px;
+    height: 40px;
+    z-index: 100;
+  
+    .search-input-home {
+      display: block;
+      width: 90%;
+      height: 100%;
+  
+      padding: 10px;
+      border: 1px solid #ccc;
+
+      border-radius: 20px 0 0 20px;
+      outline: none;
+    }
+  
+    .search-button-home {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      border: 1px solid #007bff; 
+      color: white;
+      width: 10%;
+      height: 100%;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+      user-select: none;
+    }
   }
-  
-  .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #0056b3;
-  }
-  
-  main{
-    min-height: 87.5vh;
-    position: relative;
 }
+
