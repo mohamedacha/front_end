@@ -9,7 +9,7 @@ export default function ProductCard(props){
     return(
         <div className="productCard" key={key}>
             <span className="productprice">{product.price} DH</span>
-            <img src= {product.img} alt="" />
+            <img className='productCard_img' src= {product.img} alt="" />
             <p className="productName">{product.product_name}</p>
         </div>
     )

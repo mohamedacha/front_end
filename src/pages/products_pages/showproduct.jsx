@@ -10,7 +10,7 @@ const ProductDetails = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const { id } = useParams();
-  const {token} = useContext(AppContext) 
+  const { token } = useContext(AppContext)
   const Navigate = useNavigate()
 
 
@@ -34,7 +34,7 @@ const ProductDetails = () => {
   const handlSubmit = async (e) => {
     e.preventDefault()
 
-    if(!token){Navigate('/users/login')}
+    if (!token) { Navigate('/users/login') }
     try {
       const formData = new FormData();
       formData.append('confirmed', 0);
@@ -46,7 +46,7 @@ const ProductDetails = () => {
         method: 'POST',
         headers: {
           "Accept": "application/json",
-          "authorization" : `Bearer ${token}`
+          "authorization": `Bearer ${token}`
         },
         body: formData,
       })
@@ -67,6 +67,7 @@ const ProductDetails = () => {
     } catch (e) {
       console.error('fail fetching : ', e.message)
     }
+    Navigate('/orders')
   }
 
 
@@ -76,27 +77,39 @@ const ProductDetails = () => {
 
 
   return (
-    <div className="Update_order">
+    <div className="product_details">
 
-      <div className="product-content">
+      <div className="product-info">
         <h2 className="product-title">{product.product_name}</h2>
-        <div className="product-info">
-          <h3 className="section-title">Description: {product.description}</h3>
-          <br />
-          <h3 className="section-quantity">quantity left : {product.quantity}</h3>
-          <h3 className="section-total-price">total price : {product.price * OrderQuantity} DHS</h3>
 
-          <form className="cart-section" onSubmit={handlSubmit}>
-            <input type="number" min={1} name="quantity" value={OrderQuantity} onChange={handlChange} className="quantity-input" />
-            <button className="add-to-cart-button">order</button>
-          </form>
-          <p className="error_message">{errorMessage}</p>
-          <p className="success_message">{successMessage}</p>
+        <span>Description :</span>
+        <p className="product-description"> {product.description}</p>
+
+        <hr />
+        <div className="product_section">
+          <span>product price :</span>
+          <p>{product.price} DHS</p>
         </div>
+        <div className="quantity_section">
+          <span>quantity left :</span>
+          <p>{product.quantity}</p>
+        </div>
+        <div className="total_price_section">
+          <span>total price :</span>
+          <p>{OrderQuantity <= product.quantity ? product.price * OrderQuantity + ' DHS' : 'out of limit'}</p>
+        </div>
+
+        <form className="cart-section" onSubmit={handlSubmit}>
+          <input type="number" min={1} max={product.quantity} name="quantity" value={OrderQuantity} onChange={handlChange} className="quantity-input" />
+          <button className="add-to-cart-button" type="submit">order</button>
+        </form>
+
+        <p className="error_message">{errorMessage}</p>
       </div>
+
       <div className="right_part">
-        <span className="product-price">{product.price} DHS</span>
-        <img className="product-img" src={product.img} alt="" />
+        <span className="product_price">{product.price} DHS</span>
+        <img className="product_img" src={product.img} alt="" />
       </div>
     </div>
   );

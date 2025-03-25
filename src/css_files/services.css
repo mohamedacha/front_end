@@ -23,10 +23,10 @@
     border-radius: 10px;
     img{
         cursor: pointer;
-        position: absolute;
-        user-select: none;
-        height: 400px;
-        right: -40%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Fills the container while keeping aspect ratio */
+  
     }
     .service-title{
         position: absolute;
