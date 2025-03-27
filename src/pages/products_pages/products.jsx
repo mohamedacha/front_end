@@ -1,10 +1,13 @@
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "./productCard";
-import '../../css_files/products.css' ;
+import '../../css_files/products.css';
 import { Link } from "react-router-dom";
+import { AppContext , AddButton } from '../../App'
+
 
 export default function Products() {
+    const { admin } = useContext(AppContext)
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -23,12 +26,14 @@ export default function Products() {
     }, []);
 
     return (
-
         <div className="products">
+            {admin ? (
+                <AddButton added_element_name = 'product' navigate ='/products/create' />
+            ) : ('')}
             {products.map((product, index) => (
-                    <Link to ={`/products/show/${product.id}`}>
-                        <ProductCard key={index} product={product} />
-                    </Link>
+                <Link to={`/products/show/${product.id}`}>
+                    <ProductCard key={index} product={product} />                       
+                </Link>
             ))}
         </div>
 

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useNavigate } from 'react-router-dom';
 
 import Services from './pages/services_pages/services';
 import ServiceCard from './pages/services_pages/serviceCard';
@@ -19,17 +19,143 @@ import CreateUser from './pages/users_pages/create_user';
 import Login from './pages/users_pages/login';
 import AddProduct from './pages/products_pages/addproduct';
 import AddService from './pages/services_pages/addservice';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 
-export const AppContext = createContext({})
+
+export const AppContext = createContext({});
+
+export const AddButton = (props) => {
+
+  const buttonStyle = {
+    position: "fixed",
+    zIndex: 200,
+    top: "52px",
+    right: "10px",
+    padding: "0",
+    height: "35px",
+    width: "50px",
+    backgroundColor: "#2564eb",
+    color: "white",
+    borderRadius: "8px",
+    fontWeight: 600,
+    cursor: "pointer",
+    border: "none",
+    margin: "0",
+    overflow: "hidden",
+    transition: "all 0.125s ease-in-out",
+    textAlign: "center",
+    whiteSpace: "nowrap",
+  };
+
+  const hoverStyle = {
+    width: "150px",
+  };
+  const navigate = useNavigate();
+  const [content, setContent] = useState('+');
+
+  const handelMouseEnter = (e) => {
+    Object.assign(e.target.style, hoverStyle)
+    setContent('add ' + props.added_element_name)
+  };
+  const handelMouseLeave = (e) => {
+    Object.assign(e.target.style, buttonStyle)
+    setContent('+')
+  };
+  const handelClick = () => { navigate(props.navigate) }
+
+  return (
+    <button style={buttonStyle} onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave} onClick={handelClick}>{content}</button>
+  );
+};
+
+export const AdminUI = (props) => {
+  const Navigate = useNavigate();
+  const style = {
+    container: {
+      width: "90%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    button: {
+      textDecoration: "none",
+      textAlign: "center",
+      display: "block",
+      width: "200px",
+      height: "41px",
+      backgroundColor: "red", // Button color
+      color: "white",
+      padding: "10px 20px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      marginTop: "10px",
+    },
+    link: {
+      textDecoration: "none",
+      textAlign: "center",
+      display: "block",
+      width: "200px",
+      height: "41px",
+      backgroundColor: "green", // Link color
+      color: "white",
+      padding: "10px 20px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      marginTop: "10px",
+    },
+  };
+
+  const handlDeleteByAdmin = (e) => {
+    e.preventDefault()
+    const delete_item = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/${props.deleteAPI}`, {
+          method: 'DELETE',
+          headers: {
+            "Authorization": `Bearer ${props.token}`,
+            "Accept": "application/json",
+          },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          Navigate(`${props.backToPreviousPage}`)
+        } else {
+          console.error(data.message)
+        }
+      } catch (error) { console.error(error.message); }
+    }
+    delete_item()
+  };
+
+  return (
+    <form style={style.container} className="espace_admin" onSubmit={handlDeleteByAdmin}>
+      <Link style={style.link} to={props.navigateUpdateItem} className="admin_Link_update">update</Link>
+      <button style={style.button} type="submit" className="delete">delete</button>
+    </form>
+  );
+};
+
 
 export default function App() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('authUser')) || '');
+  const UpdateAuthUser = (user) => { setUser(user) }
 
   const [token, setToken] = useState(localStorage.getItem('authToken') || '')
   const updateToken = (token) => setToken(token)
 
+  const [profail, setProfail] = useState(user ? user.img : 'dafault.png')
+  const updateProfail = (img) => setProfail(img)
+
+  const [admin, setAdmin] = useState(user ? user.admin : false)
+  const updateAdmin = (admin) => setAdmin(admin)
+
+
+
   return (
-    <AppContext.Provider value={{ token, updateToken }}>
+    <AppContext.Provider value={{ user , UpdateAuthUser , profail, updateProfail, token, updateToken, admin, updateAdmin }}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layoute />}>

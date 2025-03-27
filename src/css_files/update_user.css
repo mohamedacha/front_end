@@ -87,6 +87,7 @@ main{
         flex-direction: column;
 
         span{
+            flex: 0 0 auto;
             margin-top: 10px;
             text-align: center;
             a{

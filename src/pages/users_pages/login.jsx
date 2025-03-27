@@ -1,23 +1,36 @@
 import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import '../../css_files/login.css'
-import { stringify } from "ajv";
 import { AppContext } from "../../App";
 
 export default function Login() {
 
     const [errors, setErrors] = useState();
-    const [user, setUser] = useState({email : "" , password : ""});
-    const navigate = useNavigate() ;
-    const {updateToken} = useContext(AppContext) ;
-    
+    const [user, setUser] = useState({ email: "", password: "" });
+    const navigate = useNavigate();
+    const {updateAdmin , updateProfail, updateToken } = useContext(AppContext);
 
-    const handleChange = (e) => { 
-        setUser({...user, [e.target.name]: e.target.value})
+    const create_storage = (result) => {
+        if (result.token) {
+            localStorage.setItem("authToken", result.token)
+            updateToken(result.token);
+        }
+        if(result.user.admin){
+            updateAdmin(result.token);
+        }
+        localStorage.setItem('authUser', JSON.stringify(result.user))
+
+        updateProfail(result.user.img)
+        navigate("/users/show");
+    }
+
+    const handleChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault() ;
+        e.preventDefault();
+
         const getUser = async () => {
             try {
                 const formData = new FormData();
@@ -34,7 +47,7 @@ export default function Login() {
 
                 const result = await response.json();
 
-                
+
                 if (!response.ok) {
                     setErrors({})
                     if (result && result.errors) {
@@ -43,20 +56,10 @@ export default function Login() {
                             ...result.errors,
                         }));
                     }
-                    throw new Error(result?.message || "Failed to create user");
-                } else {
-                    if(result.token) {
-                        localStorage.setItem("authToken" , result.token)
-                        updateToken(result.token) ;
-                    }
-                    localStorage.setItem('userId' , result.user.id )
-                    navigate("/users/show") ;
-                }
-            } catch (e) {
-                console.error('error message ', e.message);
-            }
+                } else create_storage(result)
+            } catch (e) { console.error('error message ', e.message); }
         }
-        getUser() ;
+        getUser();
     }
 
     return (

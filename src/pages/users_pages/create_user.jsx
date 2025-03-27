@@ -11,7 +11,7 @@ export default function CreateUser() {
 
     const [errors, setErrors] = useState();
     const navigate = useNavigate();
-    const {updateToken} = useContext(AppContext)
+    const {updateToken , updateProfail} = useContext(AppContext)
     
 
 
@@ -64,7 +64,8 @@ export default function CreateUser() {
                     localStorage.setItem('authToken', result.token)
                     updateToken(result.token) ;
                 }
-                    localStorage.setItem('userId', result.data.id)
+                    localStorage.setItem('authUser', JSON.stringify(result.data))
+                    updateProfail(result.data.img)
                     navigate(`/users/show`)
             }
         } catch (error) { console.error('// ', error.message) }

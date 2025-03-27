@@ -11,14 +11,6 @@ const SearchBar = () => {
   );
 };
 
-const Section = ({ image, title }) => {
-  return (
-    <div className="section">
-      <img src={image} alt={title} className="section-image" />
-      <p className="section-title">{title}</p>
-    </div>
-  );
-};
 
 const Home = () => {
   return (

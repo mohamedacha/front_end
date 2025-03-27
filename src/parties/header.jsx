@@ -5,8 +5,7 @@ import { useContext } from 'react';
 import { AppContext } from '../App';
 
 export default function Header() {
-    const { token } = useContext(AppContext)
-
+    const { profail , token } = useContext(AppContext)
     return (
         <header>
             <Link to="" className='logo'>SOFRODIS</Link>
@@ -21,7 +20,9 @@ export default function Header() {
             </nav>
             {token ? (
                 <Link to="/users/show" className="account">
-                    <AccountIcon width='25' height="25" fill='white' />
+                    <div className="header_img_container">
+                        <img src= {profail} alt="kk" />
+                    </div>
                 </Link>
             ) : (
                 <Link to="/users/login" className="account">

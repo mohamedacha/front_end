@@ -1,14 +1,16 @@
 
 
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ServiceCard from "./serviceCard";
 import '../../css_files/services.css';
 import { Link } from "react-router-dom";
+import { AddButton, AppContext } from "../../App";
 
 
 export default function Services() {
     const [services, setServices] = useState([])
+    const {admin} = useContext(AppContext)
 
     useEffect(() => {
         // if(!token){ navigate('/users/login');}
@@ -27,8 +29,11 @@ export default function Services() {
     }, []);
 
     return (
-        
         <div className="services_index_page">
+            {admin ?(
+                <AddButton added_element_name='service' navigate='/services/create' />
+            ):('')}
+            
             {services.map((service, index) => (
                 <Link className='service' key={index} to={`show/${service.id}`}>
                     <img className="service-img" src={service.img} alt="" />
