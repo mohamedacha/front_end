@@ -35,7 +35,6 @@ main{
         width: 250px;
         height: 250px;
         border-bottom: 2px solid #002A71;
-        /* background-color: #002A71; */
         border-radius : 1000px;
         background-color:   #CBDCEB;
     }
@@ -44,9 +43,10 @@ main{
         width: 50%;
         padding-top: 50px ;
         color: #002A71;
+        background-color: #CBDCEB;
+        border-radius: 10px;
         font-size: 18px;
         line-height: 35px;
-        /* background-color: blueviolet; */
         overflow: hidden;
 
         min-width: 50%;
@@ -60,7 +60,6 @@ main{
             margin-bottom: 15px;
             text-align: center;
             word-wrap: break-word;
-            /* background-color: #CBDCEB; */
         }
 
         .update,

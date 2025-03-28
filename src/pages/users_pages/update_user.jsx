@@ -15,9 +15,14 @@ export default function UpdateUser() {
         formData.append("_method", "PUT");  // Laravel recognizes this as a PUT request
         formData.append("name", data.name);
         formData.append("address", data.address);
-        formData.append("password", data.password);
         formData.append("phone_number", data.phone_number);
         formData.append("remove_img", data.checkbox);
+        if( data.password && data.password.trim().length >= 1){
+            formData.append("password", data.password.trim());
+        } else {
+            formData.delete("password"); // Ensures it's not sent if empty
+        }
+        console.log(data.password.trim())
         if (data.img instanceof File) { formData.append("img", data.img); }
         return formData
 
@@ -33,8 +38,9 @@ export default function UpdateUser() {
                         'authorization': `Bearer ${token}`
                     }
                 });
-                const data = await response.json();
-                setData({...data.user , checkbox : false});
+                const fetcheddata = await response.json();
+                setData((prev)=>({...prev , ...fetcheddata.user }));
+        
             } catch (error) {
                 console.error('error message : ', error.message);
             }
@@ -107,24 +113,24 @@ export default function UpdateUser() {
                     <input type="file" name="img" id="img" onChange={handleChange} />
 
                     <label htmlFor="name">name :</label>
-                    <input type='text' name='name' id="name" className="username" onChange={handleChange} value={data.name} />
+                    <input type='text' name='name'  onChange={handleChange} value={data.name} />
                     {errors && <>{errors.name && <p className="update_profail_message_error"  >{errors.name}</p>}</>}
 
                     <label htmlFor="password">password : </label>
-                    <input type='password' name='password' id='password' className="password" onChange={handleChange} value={data.password} />
+                    <input type='password' name='password'  onChange={handleChange} value={data.password} />
                     {errors && <>{errors.password && <p className="update_profail_message_error"  >{errors.password}</p>}</>}
 
                     <label htmlFor="address">adress : </label>
-                    <input type='text' name='address' id='address' className="address" onChange={handleChange} value={data.address} />
+                    <input type='text' name='address' onChange={handleChange} value={data.address} />
                     {errors && <>{errors.address && <p className="update_profail_message_error"  >{errors.address}</p>}</>}
 
                     <label htmlFor="userphone_number"> phone number : </label>
-                    <input type='text' name='phone_number' className="userphone_number" id="userphone_number" onChange={handleChange} value={data.phone_number} />
+                    <input type='text' name='phone_number'  onChange={handleChange} value={data.phone_number} />
                     {errors && <>{errors.phone_number && <p className="update_profail_message_error"  >{errors.phone_number}</p>}</>}
 
                     <label htmlFor="checkbox" className="checkbox">
                         <span>remove my profaile img :</span>
-                        <input type="checkbox" id='checkbox' name='checkbox' onChange={handleChange} checked={data.checkbox} />
+                        <input type="checkbox" name='checkbox' onChange={handleChange} checked={data.checkbox} />
                     </label>
 
                     <button type="submit" >update</button>

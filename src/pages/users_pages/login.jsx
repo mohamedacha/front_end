@@ -8,14 +8,14 @@ export default function Login() {
     const [errors, setErrors] = useState();
     const [user, setUser] = useState({ email: "", password: "" });
     const navigate = useNavigate();
-    const {updateAdmin , updateProfail, updateToken } = useContext(AppContext);
+    const { updateAdmin, updateProfail, updateToken } = useContext(AppContext);
 
     const create_storage = (result) => {
         if (result.token) {
             localStorage.setItem("authToken", result.token)
             updateToken(result.token);
         }
-        if(result.user.admin){
+        if (result.user.admin) {
             updateAdmin(result.token);
         }
         localStorage.setItem('authUser', JSON.stringify(result.user))
@@ -64,19 +64,20 @@ export default function Login() {
 
     return (
         <form className="login_form" onSubmit={handleSubmit} encType="multipart/form-data">
+            <div className="info_section">
+                <label htmlFor="name">email :</label>
+                <input type='text' name='email' id="email" className="useremail" onChange={handleChange} value={user.email} />
+                {errors && <>{errors.email && <p className="message_error"  >{errors.email}</p>}</>}
 
-            <label htmlFor="name">email :</label>
-            <input type='text' name='email' id="email" className="useremail" onChange={handleChange} value={user.email} />
-            {errors && <>{errors.email && <p className="message_error"  >{errors.email}</p>}</>}
-
-            <label htmlFor="password">password : </label>
-            <input type='password' name='password' id='password' className="password" onChange={handleChange} value={user.password} />
-            {errors && <>{errors.password && <p className="message_error"  >{errors.password}</p>}</>}
-
-            <button type="submit" >continue</button>
-
-            <Link to={`/users/create`} className="create"> create an account</Link>
-
+                <label htmlFor="password">password : </label>
+                <input type='password' name='password' id='password' className="password" onChange={handleChange} value={user.password} />
+                {errors && <>{errors.password && <p className="message_error"  >{errors.password}</p>}</>}
+            </div>
+            <div className="buttons_section">
+                <button type="submit" >continue</button>
+                <Link> i forget my password</Link>
+                <Link to={`/users/create`} className="create"> create an account</Link>
+            </div>
 
         </form>
     )

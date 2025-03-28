@@ -64,7 +64,7 @@ export const AddButton = (props) => {
   const handelClick = () => { navigate(props.navigate) }
 
   return (
-    <button style={buttonStyle} onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave} onClick={handelClick}>{content}</button>
+    <button style={buttonStyle} onMouseEnter={handelMouseEnter} onMouseLeave={handelMouseLeave} onClick={handelClick} >{content}</button>
   );
 };
 
@@ -72,7 +72,9 @@ export const AdminUI = (props) => {
   const Navigate = useNavigate();
   const style = {
     container: {
-      width: "90%",
+      position : 'absolute' ,
+      width: "100%",
+      bottom : '20px' ,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -83,26 +85,28 @@ export const AdminUI = (props) => {
       textAlign: "center",
       display: "block",
       width: "200px",
-      height: "41px",
+      height: "35px",
+      borderRadius:'1000px' ,
       backgroundColor: "red", // Button color
       color: "white",
       padding: "10px 20px",
       border: "none",
-      borderRadius: "5px",
       cursor: "pointer",
       marginTop: "10px",
     },
     link: {
+      borderRadius:'1000px' ,
       textDecoration: "none",
       textAlign: "center",
-      display: "block",
+      display: "flex",
+      justifyContent : 'center' ,
+      alignItems : 'center' ,
       width: "200px",
-      height: "41px",
+      height: "35px",
       backgroundColor: "green", // Link color
       color: "white",
       padding: "10px 20px",
       border: "none",
-      borderRadius: "5px",
       cursor: "pointer",
       marginTop: "10px",
     },
@@ -132,7 +136,7 @@ export const AdminUI = (props) => {
 
   return (
     <form style={style.container} className="espace_admin" onSubmit={handlDeleteByAdmin}>
-      <Link style={style.link} to={props.navigateUpdateItem} className="admin_Link_update">update</Link>
+      <Link style={style.link} to={props.navigateUpdateItem} className="admin_Link_update"><p>update</p></Link>
       <button style={style.button} type="submit" className="delete">delete</button>
     </form>
   );

@@ -18,6 +18,7 @@
   .product-info {
     width: 70%;
     min-height: 400px;
+    position: relative;
   }
 
   .right_part {

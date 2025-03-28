@@ -16,6 +16,7 @@
     .service-info {
       width: 100% ;
       min-height: 400px;
+      position: relative;
     }
     .img_container{
       flex: 0 0 auto;

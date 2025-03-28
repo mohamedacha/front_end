@@ -8,7 +8,6 @@ export default function CreateUser() {
 
 
     const [user, setUser] = useState({ name: '', address: "", password: "", img: null, phone_number: "", email: '', });
-
     const [errors, setErrors] = useState();
     const navigate = useNavigate();
     const {updateToken , updateProfail} = useContext(AppContext)

@@ -7,12 +7,14 @@ export default function Profaile() {
 
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
-    const { updateProfail, token, updateToken } = useContext(AppContext);
+    const {updateAdmin, updateProfail, token, updateToken } = useContext(AppContext);
+    
     const delete_storage = () => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("authUser");
         updateToken('');
         updateProfail('');
+        updateAdmin('');
         navigate(`/users/login`)
 
     }
