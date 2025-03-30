@@ -1,3 +1,21 @@
+
+
+.service_show_container{
+  min-height: 87.5vh;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .AddButton{
+    position: absolute;
+    top: 10px;
+    right : 10px ;
+  }
+}
+
+
+
 .service_Container {
   position: relative;
     display: flex;

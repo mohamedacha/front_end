@@ -7,8 +7,8 @@ export default function Profaile() {
 
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
-    const {updateAdmin, updateProfail, token, updateToken } = useContext(AppContext);
-    
+    const { updateAdmin, updateProfail, token, updateToken } = useContext(AppContext);
+
     const delete_storage = () => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("authUser");
@@ -57,15 +57,22 @@ export default function Profaile() {
     }, []);
 
     return (
-        <div className="profail">
-            <img src={user.img} alt="profail" />
-            <div className="right_part">
-                <span className="username">{user.name}</span>
-                <span className="useremail">{user.email}</span>
-                <span className="userphone_number">{user.phone_number}</span>
-                <Link to={`/users/update`} className="update"> update</Link>
-                <a className="logout" onClick={logOut}> log out</a>
+        
+        <div className="profail_container">
+
+            <div className="profail">
+                <div className="container_img">
+                    <img src={user.img} alt="profail" />
+                </div>
+                <div className="right_part">
+                    <span className="username">{user.name}</span>
+                    <span className="useremail">{user.email}</span>
+                    <span className="userphone_number">{user.phone_number}</span>
+                    <Link to={`/users/update`} className="update"> update</Link>
+                    <a className="logout" onClick={logOut}> log out</a>
+                </div>
             </div>
+
         </div>
     )
 

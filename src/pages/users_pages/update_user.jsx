@@ -17,7 +17,7 @@ export default function UpdateUser() {
         formData.append("address", data.address);
         formData.append("phone_number", data.phone_number);
         formData.append("remove_img", data.checkbox);
-        if( data.password && data.password.trim().length >= 1){
+        if (data.password && data.password.trim().length >= 1) {
             formData.append("password", data.password.trim());
         } else {
             formData.delete("password"); // Ensures it's not sent if empty
@@ -39,8 +39,8 @@ export default function UpdateUser() {
                     }
                 });
                 const fetcheddata = await response.json();
-                setData((prev)=>({...prev , ...fetcheddata.user }));
-        
+                setData((prev) => ({ ...prev, ...fetcheddata.user }));
+
             } catch (error) {
                 console.error('error message : ', error.message);
             }
@@ -102,22 +102,25 @@ export default function UpdateUser() {
 
 
     return (
-        <>
+        <div className="update_profail_container">
             <div className="update_profail">
                 <label htmlFor="img" className="update_img">
                     <p> photo :</p>
-                    <img src={data.img || ''} className="img" />
+                    <div className="img">
+                        <img src={data.img || ''} />
+
+                    </div>
                     {errors && <>{errors.img && <p className="update_profail_message_error"  >{errors.img}</p>}</>}
                 </label>
                 <form className="right_part" onSubmit={handleSubmit} encType="multipart/form-data">
                     <input type="file" name="img" id="img" onChange={handleChange} />
 
                     <label htmlFor="name">name :</label>
-                    <input type='text' name='name'  onChange={handleChange} value={data.name} />
+                    <input type='text' name='name' onChange={handleChange} value={data.name} />
                     {errors && <>{errors.name && <p className="update_profail_message_error"  >{errors.name}</p>}</>}
 
                     <label htmlFor="password">password : </label>
-                    <input type='password' name='password'  onChange={handleChange} value={data.password} />
+                    <input type='password' name='password' onChange={handleChange} value={data.password} />
                     {errors && <>{errors.password && <p className="update_profail_message_error"  >{errors.password}</p>}</>}
 
                     <label htmlFor="address">adress : </label>
@@ -125,7 +128,7 @@ export default function UpdateUser() {
                     {errors && <>{errors.address && <p className="update_profail_message_error"  >{errors.address}</p>}</>}
 
                     <label htmlFor="userphone_number"> phone number : </label>
-                    <input type='text' name='phone_number'  onChange={handleChange} value={data.phone_number} />
+                    <input type='text' name='phone_number' onChange={handleChange} value={data.phone_number} />
                     {errors && <>{errors.phone_number && <p className="update_profail_message_error"  >{errors.phone_number}</p>}</>}
 
                     <label htmlFor="checkbox" className="checkbox">
@@ -138,7 +141,7 @@ export default function UpdateUser() {
                 </form>
             </div>
 
-        </>
+        </div>
 
     )
 

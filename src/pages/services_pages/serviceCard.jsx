@@ -8,7 +8,7 @@ import { AddButton, AdminUI, AppContext } from "../../App";
 const ServiceCard = () => {
   const [service, setService] = useState({ description: '' });
   const { id } = useParams();
-  const { admin , token } = useContext(AppContext)
+  const { admin, token } = useContext(AppContext)
 
   useEffect(() => {
     const get_service = async () => {
@@ -29,10 +29,14 @@ const ServiceCard = () => {
 
 
   return (
-    <>{admin ? (
-      <AddButton added_element_name='service' navigate='/services/create' />
-    ) : ('')}
-    
+    <div className="service_show_container">
+      
+      <div className="AddButton">
+        {admin ? (
+          <AddButton added_element_name='service' navigate='/services/create' />
+        ) : ('')}
+      </div>
+
 
       <div className="service_Container">
 
@@ -57,7 +61,7 @@ const ServiceCard = () => {
               </div>
             </>
           ) : (
-              <AdminUI deleteAPI={`services/${service.id}`} token={token} backToPreviousPage='/services' navigateUpdateItem={`/services/update/${service.id}`} />
+            <AdminUI deleteAPI={`services/${service.id}`} token={token} backToPreviousPage='/services' navigateUpdateItem={`/services/update/${service.id}`} />
           )}
 
         </div>
@@ -67,7 +71,7 @@ const ServiceCard = () => {
 
 
       </div>
-    </>
+    </div>
 
   );
 };

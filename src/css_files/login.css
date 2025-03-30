@@ -1,3 +1,14 @@
+
+.login_container{
+    min-height: 87.5vh;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .login_form {
     display: flex;
     align-items: center;

@@ -10,7 +10,7 @@ import { AddButton, AppContext } from "../../App";
 
 export default function Services() {
     const [services, setServices] = useState([])
-    const {admin} = useContext(AppContext)
+    const { admin } = useContext(AppContext)
 
     useEffect(() => {
         // if(!token){ navigate('/users/login');}
@@ -30,10 +30,13 @@ export default function Services() {
 
     return (
         <div className="services_index_page">
-            {admin ?(
-                <AddButton added_element_name='service' navigate='/services/create' />
-            ):('')}
-            
+
+            <div className="AddButton">
+                {admin ? (
+                    <AddButton added_element_name='service' navigate='/services/create' />
+                ) : ('')}
+            </div>
+
             {services.map((service, index) => (
                 <Link className='service' key={index} to={`show/${service.id}`}>
                     <img className="service-img" src={service.img} alt="" />

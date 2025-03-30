@@ -74,8 +74,9 @@ export default function CreateUser() {
 
     return (
 
-
+        <div className="profail_container">
         <div className="update_profail">
+
             <label htmlFor="img" className="update_img">
                 <p> photo :</p>
                 {<AddIcon className="img" />}
@@ -108,6 +109,7 @@ export default function CreateUser() {
                 <button type="submit" >create</button>
                 <span><Link to='/users/login'>i alredy have an account</Link></span>
             </form>
+        </div>
         </div>
     )
 }

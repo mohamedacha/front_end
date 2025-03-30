@@ -16,9 +16,9 @@ export default function OrdersCard() {
     
     const get_Orders = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/orders' ,{
+        const response = await fetch(`http://127.0.0.1:8000/api/orders/index/${JSON.parse(localStorage.getItem('authUser')).id}` ,{
           headers : {
-            // 'authorization' : `Bearer ${token}`,
+            'authorization' : `Bearer ${token}`,
             'Accept' : 'application/json' ,
           }}
 
@@ -35,6 +35,8 @@ export default function OrdersCard() {
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
+
+
   const handleUpdate = (id) => {
 
     alert(`Updating order with ID: ${id}`);
@@ -134,6 +136,7 @@ export default function OrdersCard() {
         </thead>
         <tbody>
           {orders.map((order) => (
+            
             <tr key={order.id}>
               <td>{order.product_name}</td>
               <td>{order.price}</td>
@@ -141,15 +144,15 @@ export default function OrdersCard() {
               <td>{order.quantity * order.price}</td>
               <td>{order.updated_at}</td>
               <td className="actions">
-                {/* <button className="update-btn" onClick={() => handleUpdate(order.id)}>Update</button> */}
-                {/* <Link to='/orders/show' className="update-btn" onClick={() => handleUpdate(order.id)} > update</Link> */}
+
                 <Link to={`/orders/update/${order.id}`} className="update-btn"> update</Link>
-                
                 <button className="delete-btn" onClick={() => handleDelete(order.id)}>Delete</button>
                 <button className="confirm-btn" onClick={() => handleConfirm(order.id)}>Confirmer</button>
+             
               </td>
             </tr>
-          ))}
+          ))
+          }
         </tbody>
       </table>
     </div>

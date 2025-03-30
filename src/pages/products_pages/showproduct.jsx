@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../css_files/productDetails.css";
-import {AdminUI, AddButton, AppContext } from "../../App";
+import { AdminUI, AddButton, AppContext } from "../../App";
 
 const ProductDetails = () => {
 
@@ -75,10 +75,12 @@ const ProductDetails = () => {
 
 
   return (
-    <>
-      {admin ? (
-        <AddButton added_element_name='product' navigate='/products/create' />
-      ) : ('')}
+    <div className="product_show_container">
+      <div className="AddButton">
+        {admin ? (
+          <AddButton added_element_name='product' navigate='/products/create' />
+        ) : ('')}
+      </div>
 
       <div className="product_details">
 
@@ -112,7 +114,7 @@ const ProductDetails = () => {
               <p className="error_message">{errorMessage}</p>
             </>
           ) : (
-            <AdminUI deleteAPI= {`products/${product.id}`} token={token} backToPreviousPage='/products' navigateUpdateItem={`/products/update/${product.id}`}  />
+            <AdminUI deleteAPI={`products/${product.id}`} token={token} backToPreviousPage='/products' navigateUpdateItem={`/products/update/${product.id}`} />
           )}
         </div>
 
@@ -121,7 +123,8 @@ const ProductDetails = () => {
           <img className="product_img" src={product.img} alt="" />
         </div>
       </div>
-    </>
+    </div>
+
   );
 };
 

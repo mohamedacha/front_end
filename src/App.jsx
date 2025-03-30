@@ -27,10 +27,6 @@ export const AppContext = createContext({});
 export const AddButton = (props) => {
 
   const buttonStyle = {
-    position: "fixed",
-    zIndex: 200,
-    top: "52px",
-    right: "10px",
     padding: "0",
     height: "35px",
     width: "50px",
@@ -49,6 +45,7 @@ export const AddButton = (props) => {
 
   const hoverStyle = {
     width: "150px",
+    marginLeft : '-100px'
   };
   const navigate = useNavigate();
   const [content, setContent] = useState('+');

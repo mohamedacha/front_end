@@ -1,10 +1,10 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-main{
+.update_profail_container {
     min-height: 87.5vh;
     position: relative;
 
@@ -13,23 +13,25 @@ main{
     align-items: center;
 }
 
-.update_profail_message{
+.update_profail_message {
     text-align: center;
     width: 100%;
     position: absolute;
     top: 10px;
     font-weight: 700;
     font-size: 14px;
-    .update_profail_message_success{
+
+    .update_profail_message_success {
         padding: 5px;
-        color:green ;
+        color: green;
         background-color: rgba(0, 128, 0, 0.341);
         border: 1px solid green;
     }
 }
 
-.update_profail{
+.update_profail {
     display: flex;
+    align-items: center;
 
     padding: 10px;
     min-height: 420px;
@@ -43,26 +45,28 @@ main{
     background-color: white;
     box-shadow: 0px 4px 9px 0px #0000004d;
 
-    .update_img{
+    .update_img {
         background-color: #002A71;
         display: flex;
         flex-direction: column;
         align-items: center;
-        height:fit-content ;
-        margin: 60px auto ;
+        height: fit-content;
+        margin: 60px auto;
         border-radius: 10000px;
-        .update_profail_message_error{
+
+        .update_profail_message_error {
             position: absolute;
             top: 400px;
             left: calc(25% - 125px);
             margin: 0px auto;
             text-align: center;
-            color:rgb(181, 60, 60) ;
+            color: rgb(181, 60, 60);
             font-size: 13px;
             font-weight: 700;
             width: 250px;
         }
-        p{
+
+        p {
             position: absolute;
             top: 20px;
             left: 10px;
@@ -70,27 +74,39 @@ main{
             color: #002A71;
             font-weight: 600;
         }
-        .img{
-            width: 250px;
+
+        .img {
+
             height: 250px;
+            width: 250px;
             border-bottom: 2px solid #002A71;
-            border-radius : 1000px;
-            background-color:   #CBDCEB;
+            border-radius: 1000px;
+            background-color: #CBDCEB;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
         }
     }
-    form{
-        padding: 0 15px ;
+
+    form {
+        padding: 10px 15px;
         color: #002A71;
         width: 50%;
         height: fit-content;
         display: flex;
         flex-direction: column;
 
-        span{
+        span {
             flex: 0 0 auto;
             margin-top: 10px;
             text-align: center;
-            a{
+
+            a {
                 color: #002A71;
                 cursor: pointer;
                 text-decoration: none;
@@ -98,8 +114,8 @@ main{
 
         }
 
-        input{
-            border:1px solid  #002A71;
+        input {
+            border: 1px solid #002A71;
             height: 35px;
             border-radius: 100px;
             margin-bottom: 10px;
@@ -107,35 +123,40 @@ main{
             color: #002A71;
 
         }
-        input:focus{
+
+        input:focus {
             background-color: #CBDCEB;
             outline: none;
         }
 
-        label{
+        label {
             margin-bottom: 10px;
             font-weight: 600;
         }
 
-        #img{
+        #img {
             display: none;
         }
-        .checkbox{
+
+        .checkbox {
             display: flex;
             align-items: center;
-            input{
+
+            input {
                 margin: 5px 0 0 15px;
                 height: 20px;
             }
         }
-        .update_profail_message_error{
+
+        .update_profail_message_error {
             margin: -10px 0 10px 0;
-            color:rgb(181, 60, 60) ;
+            color: rgb(181, 60, 60);
             font-size: 13px;
             font-weight: 700;
         }
-        button{
-            border:1px solid #002A71;
+
+        button {
+            border: 1px solid #002A71;
             height: 35px;
             border-radius: 100px;
             padding: 0 5px;
@@ -145,12 +166,13 @@ main{
             margin-top: 10px;
         }
     }
-    .right_part::after{
+
+    .right_part::after {
         content: '';
         height: 10px;
         width: 10px;
         background-color: #002A71;
-        border-radius: 1000px ;
+        border-radius: 1000px;
         position: absolute;
         top: 20px;
         right: 20px;
