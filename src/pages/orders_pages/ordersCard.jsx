@@ -1,26 +1,35 @@
 import { useContext, useEffect, useState } from "react";
-// import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import "../../css_files/ordersCard.css"; // Import the CSS file
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../App";
+
+const SearchBar = () => {
+  return (
+    <div className="search-bar-orders">
+      <input type="text" placeholder="Search" className="search-input-orders" />
+      <button className="search-button-orders"><p>🔍</p></button>
+    </div>
+  );
+};
 
 
 export default function OrdersCard() {
   const [orders, setOrders] = useState([])
   const navigate = useNavigate()
-  const {token} = useContext(AppContext)
+  const { token, admin } = useContext(AppContext)
 
 
   useEffect(() => {
-    if (!token){navigate('/users/login')}
-    
+
+    if (!token) { navigate('/users/login') }
     const get_Orders = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/orders/index/${JSON.parse(localStorage.getItem('authUser')).id}` ,{
-          headers : {
-            'authorization' : `Bearer ${token}`,
-            'Accept' : 'application/json' ,
-          }}
+        const response = await fetch(`http://127.0.0.1:8000/api/orders/${!admin ? `index/${JSON.parse(localStorage.getItem('authUser')).id}` : 'admin_index'}`, {
+          headers: {
+            'authorization': `Bearer ${token}`,
+            'Accept': 'application/json',
+          }
+        }
 
         );
         const data = await response.json();
@@ -52,7 +61,7 @@ export default function OrdersCard() {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          "Authorization" : `Bearer ${token}`  ,
+          "Authorization": `Bearer ${token}`,
 
         },
       });
@@ -101,9 +110,6 @@ export default function OrdersCard() {
 
 
 
-  // Render Component
-  // <OrdersCard orders={orders} handleUpdate={handleUpdate} handleDelete={handleDelete} handleConfirm={handleConfirm} />;
-
 
   // Filter orders based on search input
   // const filteredOrders = orders.filter((order) =>
@@ -112,51 +118,75 @@ export default function OrdersCard() {
 
   return (
     <div className="orders-container">
-      {/* Search Bar */}
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        {/* <FaSearch className="search-icon" /> */}
+      <div className="top_orders_page">
+        <SearchBar />
       </div>
 
-      {/* Orders Table */}
       <table className="orders-table">
-        <thead>
-          <tr>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Order Date</th>
-            <th>Confirmation</th>
-          </tr>
-        </thead>
         <tbody>
           {orders.map((order) => (
-            
-            <tr key={order.id}>
-              <td>{order.product_name}</td>
-              <td>{order.price}</td>
-              <td>{order.quantity}</td>
-              <td>{order.quantity * order.price}</td>
-              <td>{order.updated_at}</td>
-              <td className="actions">
 
-                <Link to={`/orders/update/${order.id}`} className="update-btn"> update</Link>
-                <button className="delete-btn" onClick={() => handleDelete(order.id)}>Delete</button>
-                <button className="confirm-btn" onClick={() => handleConfirm(order.id)}>Confirmer</button>
-             
+            <tr key={order.id}>
+              <td>
+                <div className="img_container">
+                <img src={order.img} alt="" />
+                </div>
+              </td>
+              <td>
+                <table className="info_table">
+                  {order.client && (
+                    <tr >
+                      <td>client :</td>
+                      <td>{order.client}</td>
+                    </tr>
+                  )}
+                  <tr>
+                    <td>product name :</td>
+                    <td>{order.product_name}</td>
+                  </tr>
+
+                  <tr>
+                    <td>price :</td>
+                    <td>{order.price}</td>
+                  </tr>
+
+                  <tr>
+                    <td>quantity :</td>
+                    <td>{order.quantity}</td>
+                  </tr>
+
+                  <tr>
+                    <td>total price :</td>
+                    <td>{order.quantity * order.price}</td>
+                  </tr>
+
+                  <tr>
+                    <td>ordered at :</td>
+                    <td>{order.updated_at}</td>
+                  </tr>
+
+                </table>
+
+              </td>
+              <td className="actions">
+                {admin ? (
+                  <>
+                    <button className="confirm-btn" onClick={() => handleConfirm(order.id)}>Confirme</button>
+                    <button className="delete-btn" onClick={() => handleDelete(order.id)}>reject</button>
+                  </>
+                ) : (
+                  <>
+                    <Link to={`/orders/update/${order.id}`} className="update-btn"> update</Link>
+                    <button className="delete-btn" onClick={() => handleDelete(order.id)}>Delete</button>
+                  </>
+                )}
+
               </td>
             </tr>
           ))
           }
         </tbody>
-      </table>
-    </div>
+      </table >
+    </div >
   );
 };
-
-// export default OrdersCard;

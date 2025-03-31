@@ -100,7 +100,7 @@ export const AdminUI = (props) => {
       alignItems : 'center' ,
       width: "200px",
       height: "35px",
-      backgroundColor: "green", // Link color
+      backgroundColor: "orange", // Link color
       color: "white",
       padding: "10px 20px",
       border: "none",

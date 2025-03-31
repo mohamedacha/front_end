@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import '../../css_files/addproduct.css';
 import { AppContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
-  const {token} = useContext(AppContext)
+  const { token } = useContext(AppContext)
   const [formData, setFormData] = useState({
     product_name: "",
     price: "",
@@ -11,6 +12,7 @@ const AddProduct = () => {
     quantity: "",
     image: null,
   });
+  const Navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,9 +39,9 @@ const AddProduct = () => {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/products", {
         method: "POST",
-        headers:{
-          "Accept" : "application/json" ,
-          "Authorization" : `Bearer ${token}` ,
+        headers: {
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: formDataToSend,
       });
@@ -56,6 +58,7 @@ const AddProduct = () => {
       }
 
       alert("Product added successfully!");
+      Navigate('/products')
       console.log("Success:", data);
     } catch (error) {
       console.error("Error adding product:", error);
@@ -64,70 +67,40 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="add-product-container">
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit} className="product-form">
-        <div className="form-group">
-          <label>Product Name:</label>
-          <input
-            type="text"
-            name="product_name"
-            value={formData.product_name}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <div className="add-product-page">
 
-        <div className="form-group">
-          <label>Price:</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <div className="add-product-container">
+        <h2>Add Product</h2>
+        <hr />
+        <form onSubmit={handleSubmit} className="product-form">
+          <section className="left_part">
+            <span>Product Name:</span>
+            <input type="text" name="product_name" value={formData.product_name} onChange={handleChange} required />
 
-        <div className="form-group">
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <span>Price:</span>
+            <input type="number" name="price" value={formData.price} onChange={handleChange} required />
 
-        <div className="form-group">
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </div>
+            <span>Category:</span>
+            <input type="text" name="category" value={formData.category} onChange={handleChange} required />
 
-        <div className="form-group">
-          <label>Quantity:</label>
-          <input
-            type="number"
-            name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
-        <div className="form-group">
-          <label>Upload Image:</label>
-          <input type="file" name="image" accept="image/*" onChange={handleFileChange} />
-        </div>
+            <span>Quantity:</span>
+            <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
 
+            
+            <label className="img" htmlFor="img_create_product"><span>Upload Image</span></label>
+            <input className="img_file_input" type="file" name="image" id="img_create_product" accept="image/*" onChange={handleFileChange} />
+          </section>
+
+          <section className="right_part">
+            <span>Description:</span>
+            <textarea name="description" value={formData.description} onChange={handleChange} />
+          </section>
         <button type="submit">Add Product</button>
-      </form>
+        </form>
+      </div>
     </div>
+
   );
 };
 

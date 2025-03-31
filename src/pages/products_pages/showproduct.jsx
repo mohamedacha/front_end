@@ -99,7 +99,7 @@ const ProductDetails = () => {
               </div>
               <div className="quantity_section">
                 <span>quantity left :</span>
-                <p>{product.quantity}</p>
+                <p>{(product.quantity - OrderQuantity) >= 0 && OrderQuantity >= 0 ? product.quantity - OrderQuantity : "out of limit" }</p>
               </div>
               <div className="total_price_section">
                 <span>total price :</span>
