@@ -11,7 +11,7 @@ const ProductDetails = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const { id } = useParams();
   const { token, admin } = useContext(AppContext)
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
 
 
 
@@ -21,9 +21,7 @@ const ProductDetails = () => {
       try {
         const respons = await fetch(`http://127.0.0.1:8000/api/products/${id}`);
         const data = await respons.json();
-        console.log(data.data)
         setProduct(data.data);
-        console.log(data.data);
         if (!respons.ok) console.error(data.message)
 
       } catch (error) { console.error(error.message); }
@@ -33,8 +31,11 @@ const ProductDetails = () => {
 
   const handlSubmit = async (e) => {
     e.preventDefault();
+    if (!token) { 
+      Navigate('/users/login')
+      return; 
+    }
 
-    if (!token) { Navigate('/users/login') }
     try {
       const formData = new FormData();
       formData.append('confirmed', 0);

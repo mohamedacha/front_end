@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import '../../css_files/addproduct.css';
 import { AppContext } from "../../App";
-import { useNavigate } from "react-router-dom";
-import { error } from "ajv/dist/vocabularies/applicator/dependencies";
-const AddProduct = () => {
+import { useNavigate, useParams } from "react-router-dom";
+export default function Updateproduct () {
   const Navigate = useNavigate();
+  const {id} = useParams();
   const { token } = useContext(AppContext);
   const [errors, setErrors] = useState();
 
@@ -19,11 +19,13 @@ const AddProduct = () => {
 
   const creationForm = () => {
     const formDataToSend = new FormData();
+    formDataToSend.append("_method", 'PUT');
     formDataToSend.append("product_name", formData.product_name);
     formDataToSend.append("price", formData.price);
     formDataToSend.append("category", formData.category);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("quantity", formData.quantity);
+    formDataToSend.delete('img')
     if (formData.image instanceof File) {
       formDataToSend.append("img", formData.image);
     }
@@ -43,7 +45,7 @@ const AddProduct = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/products", {
+      const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -65,15 +67,30 @@ const AddProduct = () => {
         throw new Error(data.message || "Failed to add product");
       }
 
-      // alert("Product added successfully!");
       sessionStorage.setItem('message', "Product added successfully!")
-      Navigate('/products')
-      // console.log("Success:", data);
+      Navigate(`/products/show/${id}`)
     } catch (error) {
       console.error("Error adding product:", error);
       alert("Error adding product: " + error.message);
     }
   };
+
+  useEffect(()=>{
+    const get_product = async () => {
+      const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`);
+
+      const data = await response.json();
+      setFormData({ ...formData, ...data.data });
+      console.log(data)
+
+      if (!response.ok) {
+        setErrors({ ...data.errors });
+        console.log(errors)
+        throw new Error(data.message || "Failed to add product");
+      }
+    }
+    get_product()
+  },[])
 
   return (
     <div className="add-product-page">
@@ -115,7 +132,7 @@ const AddProduct = () => {
               {errors && errors.description && (<p className="error_message">{errors.description}</p>)}
             </section>
           </section>
-          <button type="submit">Add Product</button>
+          <button type="submit">update Product</button>
         </form>
       </div>
     </div>
@@ -123,4 +140,3 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;

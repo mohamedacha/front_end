@@ -9,6 +9,7 @@ import NotFound from './parties/notFound';
 
 import Products from './pages/products_pages/products';
 import ProductDetails from './pages/products_pages/showproduct';
+import Updateproduct from './pages/products_pages/updateproduct';
 
 import Profaile from './pages/users_pages/profaile';
 import UpdateUser from './pages/users_pages/update_user';
@@ -184,7 +185,7 @@ export default function App() {
             {token && (
               <>
                 <Route path='create' element={<AddProduct />} />
-                <Route path='update/:id' element={<Services />} />
+                <Route path='update/:id' element={<Updateproduct />} />
               </>)}
           </Route>
 

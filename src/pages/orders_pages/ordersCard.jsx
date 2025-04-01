@@ -147,7 +147,7 @@ export default function OrdersCard() {
 
                   <tr>
                     <td>price :</td>
-                    <td>{order.price}</td>
+                    <td>{order.price + ' DHS'}</td>
                   </tr>
 
                   <tr>
@@ -157,7 +157,7 @@ export default function OrdersCard() {
 
                   <tr>
                     <td>total price :</td>
-                    <td>{order.quantity * order.price}</td>
+                    <td>{order.quantity * order.price + ' DHS'}</td>
                   </tr>
 
                   <tr>
