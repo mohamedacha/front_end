@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../../css_files/addservice.css";
 import { AppContext } from "../../App";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddService = () => {
+const UpdateService = () => {
   const { token } = useContext(AppContext)
   const [errors, setErrors] = useState();
   const Navigate = useNavigate();
+  const {id} = useParams();
+  
   const [formData, setFormData] = useState({
     service_name: "",
     available: true,
@@ -14,8 +16,19 @@ const AddService = () => {
     img: null,
   });
 
+  useEffect(()=>{
+    const get_service = async ()=>{
+      const response = await fetch(`http://127.0.0.1:8000/api/services/${id}`);
+      const data = await response.json() ;
+      console.log('effect' ,data.data)
+      setFormData({...data.data})
+    }
+    get_service()
+  },[])
+
   const createFormData =()=>{
     const formDataToSend = new FormData();
+    formDataToSend.append('_method' , 'PUt') ;
     formDataToSend.append("service_name", formData.service_name.trim());
     formDataToSend.append("available", formData.available ? 1 : 0);
     formDataToSend.append("description", formData.description.trim());
@@ -24,7 +37,7 @@ const AddService = () => {
     }
     return formDataToSend ;
 
-  }
+  };
 
   const handleChange = (e) => {
     const { name, value , checked } = e.target;
@@ -44,7 +57,7 @@ const AddService = () => {
 
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/services", {
+      const response = await fetch(`http://127.0.0.1:8000/api/services/${id}`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -58,16 +71,17 @@ const AddService = () => {
       }
 
       const data = await response.json();
+      console.log('after update' , data)
       
       if (!response.ok) {
         setErrors({...data.errors})
-        throw new Error(data.message || "Failed to add service");
+        throw new Error(data.message || "Failed to update service");
       }else{
-        sessionStorage.setItem('message' ,"Service added successfully!")
-        Navigate('/services') ;
+        sessionStorage.setItem('message' ,"Service updated successfully!")
+        Navigate(`/services/show/${id}`) ;
       }
     } catch (error) {
-      console.error("Error adding service:", error);
+      console.error("Error updating service:", error);
     }
   };
 
@@ -95,7 +109,7 @@ const AddService = () => {
               {errors && errors.img && (<p className="error_message">{errors.img}</p>)}
 
               <label htmlFor="checkbox" className="checkbox">
-                <span>disponible :</span>
+                <span>available:</span>
                 <input type="checkbox" name='available' onChange={handleChange} checked={formData.available} />
               </label>
 
@@ -104,7 +118,7 @@ const AddService = () => {
           </section>
 
 
-          <button type="submit">Add Service</button>
+          <button type="submit">save</button>
         </form>
       </div>
     </div>
@@ -112,4 +126,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default UpdateService;

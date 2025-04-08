@@ -69,11 +69,11 @@ export default function Login() {
             <form className="login_form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="info_section">
                     <label htmlFor="name">email :</label>
-                    <input type='text' name='email' id="email" className="useremail" onChange={handleChange} value={user.email} />
+                    <input type='text' name='email' id="email" className="useremail" onChange={handleChange} value={user.email} required/>
                     {errors && <>{errors.email && <p className="message_error"  >{errors.email}</p>}</>}
 
                     <label htmlFor="password">password : </label>
-                    <input type='password' name='password' id='password' className="password" onChange={handleChange} value={user.password} />
+                    <input type='password' name='password' id='password' className="password" onChange={handleChange} value={user.password} required />
                     {errors && <>{errors.password && <p className="message_error"  >{errors.password}</p>}</>}
                 </div>
                 <div className="buttons_section">

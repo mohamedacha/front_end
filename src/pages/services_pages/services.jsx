@@ -31,18 +31,34 @@ export default function Services() {
     return (
         <div className="services_index_page">
 
-            <div className="AddButton">
-                {admin ? (
+            {admin ? (
+                <div className="AddButton">
                     <AddButton added_element_name='service' navigate='/services/create' />
-                ) : ('')}
-            </div>
+                </div>
+            ): null}
+            {admin ? (
 
-            {services.map((service, index) => (
-                <Link className='service' key={index} to={`show/${service.id}`}>
-                    <img className="service-img" src={service.img} alt="" />
-                    <p className="service-title">{service.type}</p>
-                </Link>
-            ))}
+                services.map((service, index) => (
+                    <Link className={service.available ? 'service' : "service not_available"} key={index} to={`show/${service.id}`}>
+                        <img className="service-img" src={service.img} alt="" />
+                        <p className="service-title">{service.service_name}</p>
+                    </Link>
+                ))
+
+
+            ) : (
+
+
+                services.map((service, index) => (
+                    service.available ? (
+                        <Link className={service.available ? 'service' : "service not_available"} key={index} to={`show/${service.id}`}>
+                            <img className="service-img" src={service.img} alt="" />
+                            <p className="service-title">{service.service_name}</p>
+                        </Link>
+                    ) : (null)
+                ))
+
+            )}
         </div>
 
     );

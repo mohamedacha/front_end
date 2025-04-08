@@ -11,12 +11,12 @@
   height: 550px;
   max-height: fit-content;
   max-width: 700px;
-  /* background: #CBDCEB; */
+  width: 80%;
   overflow: hidden;
   padding: 20px;
   border-radius: 10px;
   border-bottom: 2px solid #002A71;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.2);
 
   h2 {
     text-align: center;
@@ -24,7 +24,6 @@
     font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
-    /* margin-bottom: 15px; */
   }
 
   hr {
@@ -56,7 +55,7 @@
       /* background-color: brown; */
 
       span {
-        text-align: center;
+        text-align: start;
         width: 100%;
         color: #002A71;
         font-weight: 600;
@@ -80,13 +79,14 @@
 
     /* ---------------------------------- */
     .right_part {
-      /* background-color: brown; */
+      display: flex;
+      flex-direction: column;
       width: 50%;
       padding: 0 0 0 5px;
       height: 340px;
 
       span {
-        text-align: center;
+        text-align: start;
         width: 100%;
         color: #002A71;
         font-weight: 600;
@@ -114,6 +114,7 @@
         span {
           font-size: 16px;
           color: white;
+          text-align: center;
         }
       }
 
@@ -129,7 +130,7 @@
         color: #002A71;
         margin: 5px 0;
         resize: vertical;
-        max-height: 180px;
+        height: 180px;
       }
 
       textarea:focus {

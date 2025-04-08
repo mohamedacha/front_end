@@ -10,7 +10,7 @@
     position: relative;
     margin: 10px;
     overflow: hidden;
-    border: 2px solid  #002a71;
+    /* border: 2px solid  #002a71; */
     border-radius: 10px;
     .productCard_img{
         cursor: pointer;

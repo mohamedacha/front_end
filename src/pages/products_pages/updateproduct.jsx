@@ -96,7 +96,7 @@ export default function Updateproduct () {
     <div className="add-product-page">
 
       <div className="add-product-container">
-        <h2>Add Product</h2>
+        <h2>update Product</h2>
         <hr />
         <form onSubmit={handleSubmit} className="product-form">
           <section className="inputs_section">

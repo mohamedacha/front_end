@@ -86,23 +86,23 @@ export default function CreateUser() {
                 <input type="file" name="img" id="img" onChange={handleChange} />
 
                 <label htmlFor="name">name :</label>
-                <input type='text' name='name' id="name" className="username" onChange={handleChange} value={user.name || ''} />
+                <input type='text' name='name' id="name" className="username" onChange={handleChange} value={user.name || ''} required />
                 {errors && <>{errors.name && <p className="update_profail_message_error"  >{errors.name}</p>}</>}
 
                 <label htmlFor="email">email :</label>
-                <input type='email' name='email' id="email" className="useremail" onChange={handleChange} value={user.email || ''} />
+                <input type='email' name='email' id="email" className="useremail" onChange={handleChange} value={user.email || ''} required  />
                 {errors && <>{errors.email && <p className="update_profail_message_error"  >{errors.email}</p>}</>}
 
                 <label htmlFor="password">password : </label>
-                <input type='password' name='password' id='password' className="password" onChange={handleChange} value={user.password || ''} />
+                <input type='password' name='password' id='password' className="password" onChange={handleChange} value={user.password || ''} required />
                 {errors && <>{errors.password && <p className="update_profail_message_error"  >{errors.password}</p>}</>}
 
                 <label htmlFor="address">adress : </label>
-                <input type='text' name='address' id='address' className="address" onChange={handleChange} value={user.address || ''} />
+                <input type='text' name='address' id='address' className="address" onChange={handleChange} value={user.address || ''} required />
                 {errors && <>{errors.address && <p className="update_profail_message_error"  >{errors.address}</p>}</>}
 
                 <label htmlFor="userphone_number"> phone number : </label>
-                <input type='text' name='phone_number' className="userphone_number" id="userphone_number" onChange={handleChange} value={user.phone_number || ''} />
+                <input type='text' name='phone_number' className="userphone_number" id="userphone_number" onChange={handleChange} value={user.phone_number || ''} required />
                 {errors && <>{errors.phone_number && <p className="update_profail_message_error"  >{errors.phone_number}</p>}</>}
 
 

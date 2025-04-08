@@ -4,6 +4,7 @@ import ProductCard from "./productCard";
 import '../../css_files/products.css';
 import { Link } from "react-router-dom";
 import { AppContext, AddButton } from '../../App'
+import { click } from "@testing-library/user-event/dist/click";
 
 const SearchBar = () => {
     return (
@@ -14,26 +15,72 @@ const SearchBar = () => {
     );
 };
 
+
 const FilterForm = () => {
-    const FormStyle = {   
+    const FormStyle = {
         height: "35px",
         width: "50px",
         backgroundColor: "#2564eb",
-        color: "white",
         borderRadius: "8px",
-        fontWeight: 600,
-        cursor: "pointer",
-        border: "none",
-        margin: "0",
         overflow: "hidden",
-        transition: "all 0.125s ease-in-out",
+
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: "white",
+        cursor: "pointer",
+
+        fontWeight: 600,
+        transition: "all 0.15s ease-in-out",
         textAlign: "center",
         whiteSpace: "nowrap",
     };
+    const handleClick = (e) => {
+        e.stopPropagation();
+
+        Object.assign(e.target.style, {
+            height: "300px",
+            width: "180px",
+            position: 'absolute',
+            top: 'calc(50% - 35px / 2)',
+            justifyContent: 'center',
+            alignItems: 'start',
+            flexDirection: 'column',
+            zIndex: '3',
+            padding: '10px',
+
+
+        })
+        // e.removeEvent('click') ;
+
+    }
+
     return (
-        <button className="filterForm" style={FormStyle}>
-            f
-        </button>
+        // <div className="filterForm" style={FormStyle}  >
+         <div className="filterForm" style={FormStyle} onClick={handleClick} > 
+            <p>f</p>
+            {/* <span htmlFor="name">price :</span>
+            <hr />
+            <div className="price">
+                <label htmlFor="price_min">min :</label>
+                <input type='number' name='price_min' className="useremail" />
+            </div>
+            <div className="date">
+                <label htmlFor="price_max">max :</label>
+                <input type='number' name='price_max' className="useremail" />
+            </div>
+
+            <span htmlFor="name">date :</span>
+            <hr />
+
+            <label htmlFor="max_date">min :</label>
+            <input type='date' name='max_date' className="useremail" />
+
+            <label htmlFor="min_date">max :</label>
+            <input type='date' name='min_date' className="useremail" />
+
+            <button onclick={() => console.log('clicked')} > filter</button> */}
+        </div>
     )
 }
 
@@ -65,9 +112,7 @@ export default function Products() {
                 <SearchBar />
                 {admin ? (
                     <AddButton added_element_name='product' navigate='/products/create' />
-                ) : (
-                    <div></div>
-                )}
+                ) : ('')}
             </div>
             <div className="products_list">
                 {products.map((product, index) => (

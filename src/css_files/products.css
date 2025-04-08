@@ -13,7 +13,8 @@
     top: 0px;
     box-shadow: 0 5px 0px 0px rgb(255, 255, 255);
     .search-bar-products {
-        top: 30px;
+        position: absolute;
+        left: 25%;
         height: 40px;
         min-width: 50%;
         max-width: 300px ;
@@ -22,14 +23,17 @@
                     
         .search-input-products{
             border-radius:  1000px 0 0 1000px  ;
-            margin: 0;
             padding: 0 10px;
             height: 100%;
+            width: 90%;
+            border: none;
             
         }
-
+        
         .search-input-products:focus{
             outline: none;
+            border-width: 0 0 1px 1px;
+            border-style: solid;
             border-color:  #002A71;
         }
         .search-button-products{

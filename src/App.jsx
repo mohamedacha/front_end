@@ -21,6 +21,7 @@ import Login from './pages/users_pages/login';
 import AddProduct from './pages/products_pages/addproduct';
 import AddService from './pages/services_pages/addservice';
 import { createContext, useState } from 'react';
+import UpdateService from './pages/services_pages/updateservice';
 
 
 export const AppContext = createContext({});
@@ -195,7 +196,7 @@ export default function App() {
             {token && (
               <>
                 <Route path='create' element={<AddService />} />
-                <Route path='update' element={<Services />} />
+                <Route path='update/:id' element={<UpdateService />} />
               </>
             )}
           </Route>

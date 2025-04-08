@@ -41,7 +41,7 @@ const ServiceCard = () => {
       <div className="service_Container">
 
         <div className="service-info">
-          <h2 className="service-title">{service.type}</h2>
+          <h2 className="service-title">{service.service_name}</h2>
           <span>Description:</span>
           <br />
           <p className="service-description">{service.description}</p>
